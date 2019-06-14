@@ -147,7 +147,7 @@ export default {
     max-height: 500px;
     min-height: 350px;
     background: #303d46;
-    border: 2px solid #cc5018;
+    border: 2px solid #1886d1;
     border-radius: 4px;
     padding: 15px;
     display: flex;
@@ -160,7 +160,7 @@ export default {
 
         > p {
             margin: 10px 0;
-            color: #cc5018;
+            color: #1886d1;
             font-weight: bold;
 
             &.singleColumnCheck {
@@ -183,7 +183,7 @@ export default {
 
                 &.selected {
                     &:before {
-                        background: #cc5018;
+                        background: #1886d1;
                     }
                 }
             }
@@ -201,7 +201,7 @@ export default {
 
                 p {
                     flex-basis: calc(100%/3 - 12px);
-                    color: #cc5018;
+                    color: #1886d1;
                     padding: 5px 0px;
                     margin: 5px 5px;
                     border: 1px solid;
@@ -247,7 +247,7 @@ export default {
                         margin: 2px;
                         background: #303d46;
                         border-radius: 4px;
-                        color: #cc5018;
+                        color: #1886d1;
                         cursor: grab;
 
                         &:active {

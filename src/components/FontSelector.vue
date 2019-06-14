@@ -40,7 +40,7 @@ export default {
     transform: translate(-50%, -50%);
     max-width: 550px;
     background: #303d46;
-    border: 2px solid #cc5018;
+    border: 2px solid #1886d1;
     border-radius: 4px;
     padding: 15px;
     display: flex;
@@ -51,7 +51,7 @@ export default {
     p {
         width: calc(50% - 50px);
         margin: 5px 10px 5px 40px;
-        color: #cc5018;
+        color: #1886d1;
         font-size: 1.2rem;
         text-align: left;
         position: relative;
@@ -59,12 +59,12 @@ export default {
         &:before {
             content: "";
             position: absolute;
-            top: 2px;
+            top: 3px;
             left: -30px;
-            height: 17px;
-            width: 17px;
+            height: 15px;
+            width: 15px;
             border-radius: 50%;
-            border: 2px solid;
+            border: 2.5px solid;
         }
 
         &.roboto {
@@ -133,7 +133,7 @@ export default {
 
         &.selected {
             :before {
-                background: #cc5018;
+                background: #1886d1;
             }
         }
     }
