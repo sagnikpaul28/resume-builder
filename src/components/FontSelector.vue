@@ -34,11 +34,11 @@ export default {
 .font-selector {
     position: fixed;
     top: 50%;
-    left: 50%;
+    transform: translateY(-50%);
+    left: 120px;
     width: 90%;
     height: 300px;
-    transform: translate(-50%, -50%);
-    max-width: 550px;
+    max-width: 500px;
     background: #303d46;
     border: 2px solid #1886d1;
     border-radius: 4px;
@@ -52,7 +52,7 @@ export default {
         width: calc(50% - 50px);
         margin: 5px 10px 5px 40px;
         color: #1886d1;
-        font-size: 1.2rem;
+        font-size: 1rem;
         text-align: left;
         position: relative;
 

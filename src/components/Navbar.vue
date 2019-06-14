@@ -4,6 +4,7 @@
             <li>Font</li>
             <li>Theme</li>
             <li>Layout</li>
+            <li>Content</li>
         </ul>
     </div>
 </template>
@@ -20,8 +21,13 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    height: 100%;
     z-index: 999999;
+    border-bottom: 1px solid #1886d1;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    border-right: 1px solid #1886d1;
 
     ul {
         list-style: none;
@@ -30,6 +36,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
 
         li {
             color: #1886d1;

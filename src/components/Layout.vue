@@ -1,7 +1,6 @@
 <template>
     <div class="layout">
         <div class="left">
-            <p :class="{selected: isSingleColumn}" class="singleColumnCheck" @click="toggleSingleColumnCheck">Use single Columnn</p>
             <p>Drag and drop to add and remove components</p>
             <div class="select-from">
                 <draggable class="list-group" :list="layoutArray" group="people"> 
@@ -37,6 +36,11 @@
                     </transition-group>
                 </draggable>
             </div>
+            <p :class="{selected: isSingleColumn}" class="singleColumnCheck" @click="toggleSingleColumnCheck">Use single Columnn</p>
+        </div>
+        <div class="layout-footer">
+            <button class="btn save">Save</button>
+            <button class="btn cancel">Cancel</button>
         </div>
     </div>
 </template>
@@ -65,9 +69,6 @@ export default {
                     id: 9,
                     name: "Courses"
                 }, {
-                    id: 13,
-                    name: "Organizations"
-                }, {
                     id: 14,
                     name: "Publications"
                 }, {
@@ -81,7 +82,7 @@ export default {
                     name: "Technical Skills"
                 }, {
                     id: 18,
-                    name: "Soft Skills"
+                    name: "Volunteer"
                 }
             ],
             selectedLayoutArray: {
@@ -139,27 +140,58 @@ export default {
 .layout {
     position: fixed;
     top: 50%;
-    left: 50%;
-    width: 90%;
+    transform: translateY(-50%);
+    left: 120px;
     height: auto;
-    transform: translate(-50%, -50%);
-    max-width: 900px;
-    max-height: 500px;
-    min-height: 350px;
     background: #303d46;
-    border: 2px solid #1886d1;
+    border-right: 2px solid #1886d1;
     border-radius: 4px;
     padding: 15px;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
+    flex-direction: column;
 
     .left {
-        flex: 5;
-        align-items: stretch;
 
         > p {
             margin: 10px 0;
+            color: #1886d1;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .select-from {
+            span {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 5px;
+                background: #202c35;
+                border-radius: 4px;
+                width: 400px;
+
+                p {
+                    flex-basis: calc(100%/3 - 12px);
+                    color: #1886d1;
+                    padding: 5px 0px;
+                    margin: 5px 5px;
+                    border: 1px solid;
+                    border-radius: 4px;
+                    cursor: grab;
+
+                    &:active {
+                        cursor: grabbing;
+                    }
+                }
+            }
+        }
+    }
+
+    .right{
+        width: 100%;
+        
+        > p {
+            margin: 0px 0 10px;
             color: #1886d1;
             font-weight: bold;
 
@@ -189,43 +221,12 @@ export default {
             }
         }
 
-        .select-from {
-            min-height: 300px;
-
-            span {
-                display: flex;
-                flex-wrap: wrap;
-                padding: 5px;
-                background: #221616;
-                border-radius: 4px;
-
-                p {
-                    flex-basis: calc(100%/3 - 12px);
-                    color: #1886d1;
-                    padding: 5px 0px;
-                    margin: 5px 5px;
-                    border: 1px solid;
-                    border-radius: 4px;
-                    cursor: grab;
-
-                    &:active {
-                        cursor: grabbing;
-                    }
-                }
-            }
-        }
-    }
-
-    .right{
-        flex-basis: 300px;
-        align-items: stretch;
-
         .select-to {
-            margin-left: 15px;
-            background: #97AABD;
+            background: #1886d1;
             border-radius: 4px;
             display: flex;
-            height: 100%;
+            height: 500px;
+            margin: 30px 0;
 
             .list-group {
                 flex: 1;
@@ -255,6 +256,33 @@ export default {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .layout-footer {
+        width: 100%;
+        border-top: 2px solid #1886d1;
+        padding-top: 10px;
+        display: flex;
+        margin: 10px -10px 5px;
+        padding: 15px 0 0;
+
+        .btn {
+            flex: 1;
+            margin: 0 10px;
+            color: #1886d1;
+            border: 2px solid;
+            background: transparent;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: .4s;
+
+            &:hover {
+                background: #1886d1;
+                color: #202c35;
             }
         }
     }

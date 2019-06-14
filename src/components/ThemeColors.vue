@@ -42,13 +42,13 @@ export default {
 .theme-colors {
     position: fixed;
     top: 50%;
-    left: 50%;
+    transform: translateY(-50%);
+    left: 120px;
     width: 90%;
     height: 300px;
-    transform: translate(-50%, -50%);
     max-width: 550px;
     background: #303d46;
-    border: 2px solid #cc5018;
+    border: 2px solid #1886d1;
     border-radius: 4px;
     padding: 15px;
     display: flex;
