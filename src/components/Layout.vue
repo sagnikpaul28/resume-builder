@@ -146,8 +146,8 @@ export default {
     max-width: 900px;
     max-height: 500px;
     min-height: 350px;
-    background: #110000;
-    border: 2px solid #9E5A63;
+    background: #303d46;
+    border: 2px solid #cc5018;
     border-radius: 4px;
     padding: 15px;
     display: flex;
@@ -160,7 +160,7 @@ export default {
 
         > p {
             margin: 10px 0;
-            color: #9E5A63;
+            color: #cc5018;
             font-weight: bold;
 
             &.singleColumnCheck {
@@ -183,7 +183,7 @@ export default {
 
                 &.selected {
                     &:before {
-                        background: #9E5A63;
+                        background: #cc5018;
                     }
                 }
             }
@@ -201,7 +201,7 @@ export default {
 
                 p {
                     flex-basis: calc(100%/3 - 12px);
-                    color: #C96567;
+                    color: #cc5018;
                     padding: 5px 0px;
                     margin: 5px 5px;
                     border: 1px solid;
@@ -217,7 +217,7 @@ export default {
     }
 
     .right{
-        flex: 4;
+        flex-basis: 300px;
         align-items: stretch;
 
         .select-to {
@@ -245,9 +245,9 @@ export default {
                         align-items: center;
                         justify-content: center;
                         margin: 2px;
-                        background: #110000;
+                        background: #303d46;
                         border-radius: 4px;
-                        color: #C96567;
+                        color: #cc5018;
                         cursor: grab;
 
                         &:active {

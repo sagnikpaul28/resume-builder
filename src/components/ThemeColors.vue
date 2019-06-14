@@ -47,8 +47,8 @@ export default {
     height: 300px;
     transform: translate(-50%, -50%);
     max-width: 550px;
-    background: #110000;
-    border: 2px solid #9E5A63;
+    background: #303d46;
+    border: 2px solid #cc5018;
     border-radius: 4px;
     padding: 15px;
     display: flex;
