@@ -91,7 +91,7 @@
             <div class="input-containers">
                 <label>Add Skills: </label>
                 <input type="text" v-model="newFields.skills" class="add-item" />
-                <button type="button" @click="onSkillSubmit('skills')">Save</button>
+                <button type="button" @click="onFieldSubmit('skills')">Save</button>
             </div>
         </div>
 
@@ -110,7 +110,7 @@
             <div class="input-containers">
                 <label>Add Soft Skills: </label>
                 <input type="text" v-model="newFields.softSkills" class="add-item" />
-                <button type="button" @click="onSkillSubmit('softSkills')">Save</button>
+                <button type="button" @click="onFieldSubmit('softSkills')">Save</button>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
             <div class="input-containers">
                 <label>Add Technical Skills: </label>
                 <input type="text" v-model="newFields.technicalSkills" class="add-item" />
-                <button type="button" @click="onSkillSubmit('technicalSkills')">Save</button>
+                <button type="button" @click="onFieldSubmit('technicalSkills')">Save</button>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
             <div class="input-containers">
                 <label>Add Languages: </label>
                 <input type="text" v-model="newFields.languages" class="add-item" />
-                <button type="button" @click="onSkillSubmit('languages')">Save</button>
+                <button type="button" @click="onFieldSubmit('languages')">Save</button>
             </div>
         </div>
 
@@ -157,7 +157,7 @@
             <div class="input-containers">
                 <label>Add Interests: </label>
                 <input type="text" v-model="newFields.interests" class="add-item" />
-                <button type="button" @click="onSkillSubmit('interests')">Save</button>
+                <button type="button" @click="onFieldSubmit('interests')">Save</button>
             </div>
         </div>
 
@@ -166,8 +166,129 @@
         <!-- Awards -->
 
         <!-- Work -->
+        <div v-if="showEditDetails === 'work'">
+            <div class="items accordion" v-for="item in data.work" :key="item._id">
+                <div class="item-accordion-title" @click="expandAccordion('work', item._id)">{{item.title}}, {{item.companyName}}</div>
+                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
+                <div class="expanded-content" :class="{expanded: item.isExpanded}">
+                    <div class="input-containers">
+                        <label>Title:</label>
+                        <input type="text" v-model="editFields.work.title" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Company:</label>
+                        <input type="text" v-model="editFields.work.companyName" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Location:</label>
+                        <input type="text" v-model="editFields.work.location" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="editFields.work.description" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date From:</label>
+                        <input type="text" v-model="editFields.work.dateFrom" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date To:</label>
+                        <input type="text" v-model="editFields.work.dateTo" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Accomplishments:</label>
+                        <input type="text" v-model="editFields.work.accomplishments" />
+                    </div>
+                </div>
+            </div>
+            <div class="items accordion add-project">
+                Add Work Experience
+                <div class="input-containers">
+                    <label>Title:</label>
+                    <input type="text" v-model="newFields.work.title" />
+                </div>
+                <div class="input-containers">
+                    <label>Company:</label>
+                    <input type="text" v-model="newFields.work.companyName" />
+                </div>
+                <div class="input-containers">
+                    <label>Location:</label>
+                    <input type="text" v-model="newFields.work.location" />
+                </div>
+                <div class="input-containers">
+                    <label>Description: </label>
+                    <textarea rows="4" v-model="newFields.work.description" />
+                </div>
+                <div class="input-containers">
+                    <label>Date From:</label>
+                    <input type="text" v-model="newFields.work.dateFrom" />
+                </div>
+                <div class="input-containers">
+                    <label>Date To:</label>
+                    <input type="text" v-model="newFields.work.dateTo" />
+                </div>
+                <div class="input-containers">
+                    <label>Accomplishments:</label>
+                    <input type="text" v-model="newFields.work.accomplishments" />
+                </div>
+                <button class="save" @click="onFieldSubmit('work')">Save</button>
+            </div>
+        </div>
 
         <!-- Projects -->
+        <div v-if="showEditDetails === 'projects'">
+            <div class="items accordion" v-for="item in data.projects" :key="item._id">
+                <div class="item-accordion-title" @click="expandAccordion('projects', item._id)">{{item.name}}</div>
+                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
+                <div class="expanded-content" :class="{expanded: item.isExpanded}">
+                    <div class="input-containers">
+                        <label>Name:</label>
+                        <input type="text" v-model="editFields.projects.name" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Link:</label>
+                        <input type="text" v-model="editFields.projects.link" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="editFields.projects.description" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date From:</label>
+                        <input type="text" v-model="editFields.projects.dateFrom" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date To:</label>
+                        <input type="text" v-model="editFields.projects.dateTo" />
+                    </div>
+                </div>
+            </div>
+            <div class="items accordion add-project">
+                Add Project
+                <div class="input-containers">
+                    <label>Name:</label>
+                    <input type="text" v-model="newFields.projects.name" />
+                </div>
+                <div class="input-containers">
+                    <label>Link:</label>
+                    <input type="text" v-model="newFields.projects.link" />
+                </div>
+                <div class="input-containers">
+                    <label>Description: </label>
+                    <textarea rows="4" v-model="newFields.projects.description" />
+                </div>
+                <div class="input-containers">
+                    <label>Date From:</label>
+                    <input type="text" v-model="newFields.projects.dateFrom" />
+                </div>
+                <div class="input-containers">
+                    <label>Date To:</label>
+                    <input type="text" v-model="newFields.projects.dateTo" />
+                </div>
+                <button class="save" @click="onFieldSubmit('projects')">Save</button>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -176,13 +297,47 @@ export default {
     name: "ContentEditorDetails",
     data() {
         return {
-            showEditDetails: 'languages',
+            showEditDetails: 'work',
             newFields: {
-                skills: null,
-                softSkills: null,
-                technicalSkills: null, 
-                languages: null,
-                interests: null
+                skills: '',
+                softSkills: '',
+                technicalSkills: '', 
+                languages: '',
+                interests: '',
+                projects: {
+                    name: '',
+                    link: '',
+                    dateFrom: '',
+                    dateTo: '',
+                    description: ''
+                },
+                work: {
+                    title: '',
+                    companyName: '',
+                    dateTo: '',
+                    dateTo: '',
+                    location: '',
+                    description: '',
+                    accomplishments: ''
+                }
+            },
+            editFields: {
+                projects: {
+                    name: '',
+                    link: '',
+                    dateFrom: '',
+                    dateTo: '',
+                    description: ''
+                }, 
+                work: {
+                    title: '',
+                    companyName: '',
+                    dateTo: '',
+                    dateTo: '',
+                    location: '',
+                    description: '',
+                    accomplishments: ''
+                }
             },
             data: {
                 name: "Sagnik Paul",
@@ -470,19 +625,22 @@ export default {
                 ],
                 projects: [
                     {
+                        _id: 1,
                         name: "project1",
                         link: "somelink.com",
                         dateFrom: "01/01/2018",
                         dateTo: "01/01/2018",
                         description: "some random description"
                     }, {
-                        name: "project1",
+                        _id: 2,
+                        name: "project2",
                         link: "somelink.com",
                         dateFrom: "01/01/2018",
                         dateTo: "01/01/2018",
                         description: "some random description"
                     }, {
-                        name: "project1",
+                        _id: 3,
+                        name: "project3",
                         link: "somelink.com",
                         dateFrom: "01/01/2018",
                         dateTo: "01/01/2018",
@@ -493,11 +651,62 @@ export default {
         }
     }, 
     methods: {
-        onSkillSubmit(field) {
-            this.data[field].push({
-                name: this.newFields[field]
-            });
-            this.newFields[field] = null;
+        onFieldSubmit(field) {
+            /*
+            ==========================
+            check if fields empty
+            write common code for insertion
+            ==========================
+            */
+            if (field === 'projects') {
+                this.data[field].push({
+                    name: this.newFields[field].name,
+                    dateFrom: this.newFields[field].dateFrom,
+                    dateTo: this.newFields[field].dateTo,
+                    link: this.newFields[field].link,
+                    description: this.newFields[field].description
+                });
+                
+                for (const key of Object.keys(this.newFields[field])) {
+                    this.newFields[field][key] = '';
+                }
+            }else if (field === 'work') {
+                this.data[field].push({
+                    title: this.newFields[field].title,
+                    companyName: this.newFields[field].companyName,
+                    dateFrom: this.newFields[field].dateFrom,
+                    dateTo: this.newFields[field].dateTo,
+                    location: this.newFields[field].location,
+                    description: this.newFields[field].description,
+                    accomplishments: this.newFields[field].accomplishments
+                });
+                
+                for (const key of Object.keys(this.newFields[field])) {
+                    this.newFields[field][key] = '';
+                }
+            }else {
+                this.data[field].push({
+                    name: this.newFields[field]
+                });
+                this.newFields[field] = null;
+            }
+        },
+        expandAccordion(field, id) {
+            this.data[field] = this.data[field].map(item => {
+                if (item.isExpanded) {
+                    delete item.isExpanded;
+                }else if (item._id === id) {
+                    item.isExpanded = true;
+                    this.editFields[field] = {
+                        name: item.name,
+                        description: item.description,
+                        link: item.link,
+                        dateFrom: item.dateFrom,
+                        dateTo: item.dateTo
+                    }
+                }
+                return item;
+            })
         }
     }
 }
@@ -510,6 +719,8 @@ export default {
     transform: translateY(-50%);
     left: 0;
     height: auto;
+    max-height: 90%;
+    overflow: scroll;
     width: 400px;
     background: #303d46;
     border: 2px solid #1886d1;
@@ -596,6 +807,55 @@ export default {
                 text-align: center;
                 font-weight: bold;
                 cursor: pointer;
+            }
+
+            &.accordion {
+                display: block;
+                margin: 10px 0;
+                cursor: pointer;
+
+                .save {
+                    background: transparent;
+                    color: #1886d1;
+                    border: 1px solid #1886d1;
+                    margin: 15px 0px 10px;
+                    border-radius: 4px;
+                    width: 100%;
+                    padding: 8px 15px;
+                    font-size: 1rem;
+                    transition: .3s;
+
+                    &:hover {
+                        color: #303d46;
+                        background: #1886d1;
+                    }
+                }
+
+                .item-accordion-title {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .expand {
+                    transform: none;
+                    transition: .3s;
+                    position: absolute;
+                    right: 10px;
+                    top: 7px;
+                    z-index: 0;
+
+                    &.expanded {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                .expanded-content {
+                    display: none;
+
+                    &.expanded {
+                        display: block;
+                    }
+                }
             }
         }
     }
