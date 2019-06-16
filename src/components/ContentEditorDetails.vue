@@ -134,6 +134,58 @@
         <!-- Publications -->
 
         <!-- References -->
+        <div v-if="showEditDetails === 'references'">
+            <div class="items accordion" v-for="item in data.references" :key="item._id">
+                <div class="item-accordion-title" @click="expandAccordion('references', item._id)">{{item.name}}</div>
+                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
+                <div class="expanded-content" :class="{expanded: item.isExpanded}">
+                    <div class="input-containers">
+                        <label>Name:</label>
+                        <input type="text" v-model="editFields.references.name" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Position:</label>
+                        <input type="text" v-model="editFields.references.position" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Email:</label>
+                        <input type="text" v-model="editFields.references.email" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Number:</label>
+                        <input type="text" v-model="editFields.references.number" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="editFields.references.description" />
+                    </div>
+                </div>
+            </div>
+            <div class="items accordion add-project">
+                Add References
+                <div class="input-containers">
+                    <label>Name:</label>
+                    <input type="text" v-model="newFields.references.name" />
+                </div>
+                <div class="input-containers">
+                    <label>Position:</label>
+                    <input type="text" v-model="newFields.references.position" />
+                </div>
+                <div class="input-containers">
+                    <label>Email:</label>
+                    <input type="text" v-model="newFields.references.email" />
+                </div>
+                <div class="input-containers">
+                    <label>Number:</label>
+                    <input type="text" v-model="newFields.references.number" />
+                </div>
+                <div class="input-containers">
+                    <label>Description: </label>
+                    <textarea rows="4" v-model="newFields.references.description" />
+                </div>
+                <button class="save" @click="onFieldSubmit('references')">Save</button>
+            </div>
+        </div>
 
         <!-- Languages -->
         <div v-if="showEditDetails === 'languages'">
@@ -162,8 +214,96 @@
         </div>
 
         <!-- Certificates -->
+        <div v-if="showEditDetails === 'certificates'">
+            <div class="items accordion" v-for="item in data.certificates" :key="item._id">
+                <div class="item-accordion-title" @click="expandAccordion('certificates', item._id)">{{item.name}}</div>
+                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
+                <div class="expanded-content" :class="{expanded: item.isExpanded}">
+                    <div class="input-containers">
+                        <label>Name:</label>
+                        <input type="text" v-model="editFields.certificates.name" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Link:</label>
+                        <input type="text" v-model="editFields.certificates.link" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date:</label>
+                        <input type="text" v-model="editFields.certificates.date" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="editFields.certificates.description" />
+                    </div>
+                </div>
+            </div>
+            <div class="items accordion add-project">
+                Add Certificates
+                <div class="input-containers">
+                    <label>Name:</label>
+                    <input type="text" v-model="newFields.certificates.name" />
+                </div>
+                <div class="input-containers">
+                    <label>link:</label>
+                    <input type="text" v-model="newFields.certificates.link" />
+                </div>
+                <div class="input-containers">
+                    <label>Date:</label>
+                    <input type="text" v-model="newFields.certificates.date" />
+                </div>
+                <div class="input-containers">
+                    <label>Description: </label>
+                    <textarea rows="4" v-model="newFields.certificates.description" />
+                </div>
+                <button class="save" @click="onFieldSubmit('certificates')">Save</button>
+            </div>
+        </div>
 
         <!-- Awards -->
+        <div v-if="showEditDetails === 'awards'">
+            <div class="items accordion" v-for="item in data.awards" :key="item._id">
+                <div class="item-accordion-title" @click="expandAccordion('awards', item._id)">{{item.name}}, {{item.instituteName}}</div>
+                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
+                <div class="expanded-content" :class="{expanded: item.isExpanded}">
+                    <div class="input-containers">
+                        <label>Name:</label>
+                        <input type="text" v-model="editFields.awards.name" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Institute Name:</label>
+                        <input type="text" v-model="editFields.awards.instituteName" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Date:</label>
+                        <input type="text" v-model="editFields.awards.date" />
+                    </div>
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="editFields.awards.description" />
+                    </div>
+                </div>
+            </div>
+            <div class="items accordion add-project">
+                Add Awards
+                <div class="input-containers">
+                    <label>Name:</label>
+                    <input type="text" v-model="newFields.awards.name" />
+                </div>
+                <div class="input-containers">
+                    <label>Institute Name:</label>
+                    <input type="text" v-model="newFields.awards.instituteName" />
+                </div>
+                <div class="input-containers">
+                    <label>Date:</label>
+                    <input type="text" v-model="newFields.awards.date" />
+                </div>
+                <div class="input-containers">
+                    <label>Description: </label>
+                    <textarea rows="4" v-model="newFields.awards.description" />
+                </div>
+                <button class="save" @click="onFieldSubmit('awards')">Save</button>
+            </div>
+        </div>
 
         <!-- Work -->
         <div v-if="showEditDetails === 'work'">
@@ -297,7 +437,7 @@ export default {
     name: "ContentEditorDetails",
     data() {
         return {
-            showEditDetails: 'work',
+            showEditDetails: 'references',
             newFields: {
                 skills: '',
                 softSkills: '',
@@ -319,6 +459,25 @@ export default {
                     location: '',
                     description: '',
                     accomplishments: ''
+                },
+                awards: {
+                    name: '',
+                    instituteName: '',
+                    date: '',
+                    description: ''
+                }, 
+                certificates: {
+                    name: '',
+                    link: '',
+                    date: '',
+                    description: ''
+                },
+                references: {
+                    name: '',
+                    position: '',
+                    email: '',
+                    number: '',
+                    description: ''
                 }
             },
             editFields: {
@@ -337,6 +496,25 @@ export default {
                     location: '',
                     description: '',
                     accomplishments: ''
+                },
+                awards: {
+                    name: '',
+                    instituteName: '',
+                    date: '',
+                    description: ''
+                }, 
+                certificates: {
+                    name: '',
+                    link: '',
+                    date: '',
+                    description: ''
+                }, 
+                references: {
+                    name: '',
+                    position: '',
+                    email: '',
+                    number: '',
+                    description: ''
                 }
             },
             data: {
@@ -522,20 +700,26 @@ export default {
                 ],
                 references: [
                     {
+                        _id: 1,
                         name: "Dr N. K. Rout",
                         position: "Some position",
                         email: "email@email.com",
-                        number: "9674658599"
+                        number: "9674658599",
+                        description: "9674658599"
                     }, {
+                        _id: 2,
                         name: "Dr N. K. Rout",
                         position: "Some position 1",
                         email: "email@email.com",
-                        number: "9674658599"
+                        number: "9674658599",
+                        description: "9674658599"
                     }, {
+                        _id: 3,
                         name: "Dr N. K. Rout",
                         position: "Some position 2",
                         email: "email@email.com",
-                        number: "9674658599"
+                        number: "9674658599",
+                        description: "9674658599"
                     }
                 ],
                 languages: [
@@ -562,16 +746,19 @@ export default {
                 ],
                 certificates: [
                     {
+                        _id: 1,
                         name: "Name",
                         link: "somelink.com",
                         date: "01/01/2018",
                         description: "Some certificate"
                     }, {
+                        _id: 2,
                         name: "Name",
                         link: "somelink1.com",
                         date: "01/01/2018",
                         description: "Some certificate"
                     }, {
+                        _id: 3,
                         name: "Name",
                         link: "somelink2.com",
                         date: "01/01/2018",
@@ -580,16 +767,19 @@ export default {
                 ],
                 awards: [
                     {
+                        _id: 1,
                         name: "Award 1",
                         date: "01/01/2018",
                         instituteName: "KIIT",
                         description: "some award"
                     }, {
+                        _id: 2,
                         name: "Award 2",
                         date: "01/01/2018",
                         instituteName: "KIIT",
                         description: "some award"
                     }, {
+                        _id: 3,
                         name: "Award 3",
                         date: "01/01/2018",
                         instituteName: "KIIT",
@@ -598,6 +788,7 @@ export default {
                 ],
                 work: [
                     {
+                        _id: 1,
                         title: "Product Developer",
                         companyName: "NowFloats",
                         dateFrom: "01/01/2018",
@@ -606,6 +797,7 @@ export default {
                         description: "Some random description",
                         accomplishments: null,
                     }, {
+                        _id: 2,
                         title: "Product Developer",
                         companyName: "NowFloats",
                         dateFrom: "01/01/2018",
@@ -614,6 +806,7 @@ export default {
                         description: "Some random description",
                         accomplishments: null,
                     }, {
+                        _id: 3,
                         title: "Product Developer",
                         companyName: "NowFloats",
                         dateFrom: "01/01/2018",
@@ -656,6 +849,7 @@ export default {
             ==========================
             check if fields empty
             write common code for insertion
+            save after edit fields
             ==========================
             */
             if (field === 'projects') {
@@ -684,6 +878,40 @@ export default {
                 for (const key of Object.keys(this.newFields[field])) {
                     this.newFields[field][key] = '';
                 }
+            }else if (field === 'awards') {
+                this.data[field].push({
+                    name: this.newFields[field].name,
+                    instituteName: this.newFields[field].instituteName,
+                    date: this.newFields[field].date,
+                    description: this.newFields[field].description,
+                });
+                
+                for (const key of Object.keys(this.newFields[field])) {
+                    this.newFields[field][key] = '';
+                }
+            }else if (field === 'certificates') {
+                this.data[field].push({
+                    name: this.newFields[field].name,
+                    link: this.newFields[field].link,
+                    date: this.newFields[field].date,
+                    description: this.newFields[field].description,
+                });
+                
+                for (const key of Object.keys(this.newFields[field])) {
+                    this.newFields[field][key] = '';
+                }
+            }else if (field === 'references') {
+                this.data[field].push({
+                    name: this.newFields[field].name,
+                    position: this.newFields[field].position,
+                    email: this.newFields[field].email,
+                    number: this.newFields[field].number,
+                    description: this.newFields[field].description,
+                });
+                
+                for (const key of Object.keys(this.newFields[field])) {
+                    this.newFields[field][key] = '';
+                }
             }else {
                 this.data[field].push({
                     name: this.newFields[field]
@@ -697,13 +925,7 @@ export default {
                     delete item.isExpanded;
                 }else if (item._id === id) {
                     item.isExpanded = true;
-                    this.editFields[field] = {
-                        name: item.name,
-                        description: item.description,
-                        link: item.link,
-                        dateFrom: item.dateFrom,
-                        dateTo: item.dateTo
-                    }
+                    this.editFields[field] = item;
                 }
                 return item;
             })
