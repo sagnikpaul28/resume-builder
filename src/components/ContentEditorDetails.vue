@@ -2,1230 +2,122 @@
     <div class="content-editor-details">
         <p class="go-back">&#8678; Back</p>
 
-        <!-- Basics -->
-        <div v-if="showEditDetails === 'basics'">
-            <div class="input-containers">
-                <label>Name: </label>
-                <input type="text" v-model="data.name" />
-            </div>
-            <div class="input-containers">
-                <label>Email: </label>
-                <input type="text" v-model="data.email" />
-            </div>
-            <div class="input-containers">
-                <label>Number: </label>
-                <input type="text" v-model="data.number" />
-            </div>
-            <div class="input-containers">
-                <label>Country: </label>
-                <input type="text" v-model="data.country" />
-            </div>
-            <div class="input-containers">
-                <label>City: </label>
-                <input type="text" v-model="data.city" />
-            </div>
-            <div class="input-containers">
-                <label>Address: </label>
-                <textarea rows="3" v-model="data.address" />
-            </div>
-            <div class="input-containers">
-                <label>Website: </label>
-                <input type="text" v-model="data.website" />
-            </div>
-        </div>
+        <ContentEditorDetailsBasics v-if="showEditDetails === 'basics'" />
 
         <!-- Social -->
-        <div v-if="showEditDetails === 'social'">
-            <div class="input-containers">
-                <label>Facebook: </label>
-                <input type="text" v-model="data.social.facebook" />
-            </div>
-            <div class="input-containers">
-                <label>Twitter: </label>
-                <input type="text" v-model="data.social.twitter" />
-            </div>
-            <div class="input-containers">
-                <label>LinkedIn: </label>
-                <input type="text" v-model="data.social.linkedin" />
-            </div>
-            <div class="input-containers">
-                <label>Github: </label>
-                <input type="text" v-model="data.social.github" />
-            </div>
-            <div class="input-containers">
-                <label>Stack Overflow: </label>
-                <input type="text" v-model="data.social.stackoverflow" />
-            </div>
-            <div class="input-containers">
-                <label>Instagram: </label>
-                <textarea rows="3" v-model="data.social.instagram" />
-            </div>
-            <div class="input-containers">
-                <label>Medium: </label>
-                <input type="text" v-model="data.social.medium" />
-            </div>
-            <div class="input-containers">
-                <label>Quora: </label>
-                <input type="text" v-model="data.social.quora" />
-            </div>
-        </div>
+        <ContentEditorDetailsSocials  v-if="showEditDetails === 'social'" />
 
         <!-- Header -->
-        <div v-if="showEditDetails === 'header'">
-            <div class="input-containers">
-                <label>Title: </label>
-                <input type="text" v-model="data.intro.title" />
-            </div>
-            <div class="input-containers">
-                <label>Summary: </label>
-                <textarea rows="3" v-model="data.intro.summary" />
-            </div>
-        </div>
+        <ContentEditorDetailsHeader  v-if="showEditDetails === 'header'" />
 
         <!-- Skills -->
-        <div v-if="showEditDetails === 'skills'">
-            <div class="items" v-for="item in data.skills" :key="item.name">
-                {{ item.name }}
-                <span class="close">x</span>
-            </div>
-            <div class="input-containers">
-                <label>Add Skills: </label>
-                <input type="text" v-model="newFields.skills" class="add-item" />
-                <button type="button" @click="onFieldSubmit('skills')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsSkills  v-if="showEditDetails === 'skills'" />
 
         <!-- Achievements -->
-        <div v-if="showEditDetails === 'achievements'">
-            <div class="items accordion" v-for="item in data.achievements" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('achievements', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.achievements.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Link:</label>
-                        <input type="text" v-model="editFields.achievements.link" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.achievements.description" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Achievements
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.achievements.name" />
-                </div>
-                <div class="input-containers">
-                    <label>link:</label>
-                    <input type="text" v-model="newFields.achievements.link" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.achievements.description" />
-                </div>
-                <button class="save" @click="onFieldSubmit('achievements')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsAchievements v-if="showEditDetails === 'achievements'" />
 
         <!-- Conferences -->
-        <div v-if="showEditDetails === 'conferences'">
-            <div class="items accordion" v-for="item in data.conferences" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('conferences', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.conferences.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.conferences.description" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.conferences.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.coconferencesurses.dateTo" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Conferences
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.conferences.name" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.conferences.description" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.courconferencesses.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.conferences.dateTo" />
-                </div>
-                <button class="save" @click="onFieldSubmit('conferences')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsConferences v-if="showEditDetails === 'conferences'" />
 
         <!-- Courses -->
-        <div v-if="showEditDetails === 'courses'">
-            <div class="items accordion" v-for="item in data.courses" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('courses', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.courses.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.courses.description" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.courses.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.courses.dateTo" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Courses
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.courses.name" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.courses.description" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.courses.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.courses.dateTo" />
-                </div>
-                <button class="save" @click="onFieldSubmit('courses')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsCourses v-if="showEditDetails === 'courses'" />
 
         <!-- Soft Skills -->
-        <div v-if="showEditDetails === 'softSkills'">
-            <div class="items" v-for="item in data.softSkills" :key="item.name">
-                {{ item.name }}
-                <span class="close">x</span>
-            </div>
-            <div class="input-containers">
-                <label>Add Soft Skills: </label>
-                <input type="text" v-model="newFields.softSkills" class="add-item" />
-                <button type="button" @click="onFieldSubmit('softSkills')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsSoftSkills v-if="showEditDetails === 'softSkills'" />
 
         <!-- Technical Skills -->
-        <div v-if="showEditDetails === 'technicalSkills'">
-            <div class="items" v-for="item in data.technicalSkills" :key="item.name">
-                {{ item.name }}
-                <span class="close">x</span>
-            </div>
-            <div class="input-containers">
-                <label>Add Technical Skills: </label>
-                <input type="text" v-model="newFields.technicalSkills" class="add-item" />
-                <button type="button" @click="onFieldSubmit('technicalSkills')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsTechnicalSkills v-if="showEditDetails === 'technicalSkills'" />
 
         <!-- Education -->
-        <div v-if="showEditDetails === 'education'">
-            <div class="items accordion" v-for="item in data.education" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('education', item._id)">{{item.program}}, {{item.institute}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Program:</label>
-                        <input type="text" v-model="editFields.education.program" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Institute:</label>
-                        <input type="text" v-model="editFields.education.institute" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Place:</label>
-                        <input type="text" v-model="editFields.education.place" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Course: </label>
-                        <textarea rows="4" v-model="editFields.education.course" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.education.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.education.dateTo" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Education
-                <div class="input-containers">
-                    <label>Program:</label>
-                    <input type="text" v-model="newFields.education.program" />
-                </div>
-                <div class="input-containers">
-                    <label>Institute:</label>
-                    <input type="text" v-model="newFields.education.institute" />
-                </div>
-                <div class="input-containers">
-                    <label>Place:</label>
-                    <input type="text" v-model="newFields.education.place" />
-                </div>
-                <div class="input-containers">
-                    <label>Course: </label>
-                    <textarea rows="4" v-model="newFields.education.course" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.education.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.education.dateTo" />
-                </div>
-                <button class="save" @click="onFieldSubmit('education')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsEducation v-if="showEditDetails === 'education'" />
 
         <!-- Volunteer -->
-        <div v-if="showEditDetails === 'volunteer'">
-            <div class="items accordion" v-for="item in data.volunteer" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('volunteer', item._id)">{{item.title}}, {{item.companyName}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Title:</label>
-                        <input type="text" v-model="editFields.volunteer.title" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Company:</label>
-                        <input type="text" v-model="editFields.volunteer.companyName" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Location:</label>
-                        <input type="text" v-model="editFields.volunteer.location" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.volunteer.description" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.volunteer.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.volunteer.dateTo" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Volunteer Experience
-                <div class="input-containers">
-                    <label>Title:</label>
-                    <input type="text" v-model="newFields.volunteer.title" />
-                </div>
-                <div class="input-containers">
-                    <label>Company:</label>
-                    <input type="text" v-model="newFields.volunteer.companyName" />
-                </div>
-                <div class="input-containers">
-                    <label>Location:</label>
-                    <input type="text" v-model="newFields.volunteer.location" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.volunteer.description" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.volunteer.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.volunteer.dateTo" />
-                </div>
-                <button class="save" @click="onFieldSubmit('volunteer')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsVolunteer v-if="showEditDetails === 'volunteer'" />
 
         <!-- Publications -->
-        <div v-if="showEditDetails === 'publications'">
-            <div class="items accordion" v-for="item in data.publications" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('publications', item._id)">{{item.title}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Title:</label>
-                        <input type="text" v-model="editFields.publications.title" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Authors:</label>
-                        <input type="text" v-model="editFields.publications.instituteName" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date:</label>
-                        <input type="text" v-model="editFields.publications.date" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.publications.description" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Publications
-                <div class="input-containers">
-                    <label>Title:</label>
-                    <input type="text" v-model="newFields.publications.title" />
-                </div>
-                <div class="input-containers">
-                    <label>Authors:</label>
-                    <input type="text" v-model="newFields.publications.authors" />
-                </div>
-                <div class="input-containers">
-                    <label>Date:</label>
-                    <input type="text" v-model="newFields.publications.date" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.publications.description" />
-                </div>
-                <button class="save" @click="onFieldSubmit('publications')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsPublications v-if="showEditDetails === 'publications'" />
 
         <!-- References -->
-        <div v-if="showEditDetails === 'references'">
-            <div class="items accordion" v-for="item in data.references" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('references', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.references.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Position:</label>
-                        <input type="text" v-model="editFields.references.position" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Email:</label>
-                        <input type="text" v-model="editFields.references.email" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Number:</label>
-                        <input type="text" v-model="editFields.references.number" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.references.description" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add References
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.references.name" />
-                </div>
-                <div class="input-containers">
-                    <label>Position:</label>
-                    <input type="text" v-model="newFields.references.position" />
-                </div>
-                <div class="input-containers">
-                    <label>Email:</label>
-                    <input type="text" v-model="newFields.references.email" />
-                </div>
-                <div class="input-containers">
-                    <label>Number:</label>
-                    <input type="text" v-model="newFields.references.number" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.references.description" />
-                </div>
-                <button class="save" @click="onFieldSubmit('references')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsReferences v-if="showEditDetails === 'references'" />
 
         <!-- Languages -->
-        <div v-if="showEditDetails === 'languages'">
-            <div class="items" v-for="item in data.languages" :key="item.name">
-                {{ item.name }}
-                <span class="close">x</span>
-            </div>
-            <div class="input-containers">
-                <label>Add Languages: </label>
-                <input type="text" v-model="newFields.languages" class="add-item" />
-                <button type="button" @click="onFieldSubmit('languages')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsLanguages v-if="showEditDetails === 'languages'" />
 
         <!-- Interests -->
-        <div v-if="showEditDetails === 'interests'">
-            <div class="items" v-for="item in data.interests" :key="item.name">
-                {{ item.name }}
-                <span class="close">x</span>
-            </div>
-            <div class="input-containers">
-                <label>Add Interests: </label>
-                <input type="text" v-model="newFields.interests" class="add-item" />
-                <button type="button" @click="onFieldSubmit('interests')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsInterests v-if="showEditDetails === 'interests'" />
 
         <!-- Certificates -->
-        <div v-if="showEditDetails === 'certificates'">
-            <div class="items accordion" v-for="item in data.certificates" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('certificates', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.certificates.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Link:</label>
-                        <input type="text" v-model="editFields.certificates.link" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date:</label>
-                        <input type="text" v-model="editFields.certificates.date" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.certificates.description" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Certificates
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.certificates.name" />
-                </div>
-                <div class="input-containers">
-                    <label>link:</label>
-                    <input type="text" v-model="newFields.certificates.link" />
-                </div>
-                <div class="input-containers">
-                    <label>Date:</label>
-                    <input type="text" v-model="newFields.certificates.date" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.certificates.description" />
-                </div>
-                <button class="save" @click="onFieldSubmit('certificates')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsCertificates v-if="showEditDetails === 'certificates'" />
 
         <!-- Awards -->
-        <div v-if="showEditDetails === 'awards'">
-            <div class="items accordion" v-for="item in data.awards" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('awards', item._id)">{{item.name}}, {{item.instituteName}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.awards.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Institute Name:</label>
-                        <input type="text" v-model="editFields.awards.instituteName" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date:</label>
-                        <input type="text" v-model="editFields.awards.date" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.awards.description" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Awards
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.awards.name" />
-                </div>
-                <div class="input-containers">
-                    <label>Institute Name:</label>
-                    <input type="text" v-model="newFields.awards.instituteName" />
-                </div>
-                <div class="input-containers">
-                    <label>Date:</label>
-                    <input type="text" v-model="newFields.awards.date" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.awards.description" />
-                </div>
-                <button class="save" @click="onFieldSubmit('awards')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsAwards v-if="showEditDetails === 'awards'" />
 
         <!-- Work -->
-        <div v-if="showEditDetails === 'work'">
-            <div class="items accordion" v-for="item in data.work" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('work', item._id)">{{item.title}}, {{item.companyName}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Title:</label>
-                        <input type="text" v-model="editFields.work.title" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Company:</label>
-                        <input type="text" v-model="editFields.work.companyName" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Location:</label>
-                        <input type="text" v-model="editFields.work.location" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.work.description" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.work.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.work.dateTo" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Accomplishments:</label>
-                        <input type="text" v-model="editFields.work.accomplishments" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Work Experience
-                <div class="input-containers">
-                    <label>Title:</label>
-                    <input type="text" v-model="newFields.work.title" />
-                </div>
-                <div class="input-containers">
-                    <label>Company:</label>
-                    <input type="text" v-model="newFields.work.companyName" />
-                </div>
-                <div class="input-containers">
-                    <label>Location:</label>
-                    <input type="text" v-model="newFields.work.location" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.work.description" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.work.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.work.dateTo" />
-                </div>
-                <div class="input-containers">
-                    <label>Accomplishments:</label>
-                    <input type="text" v-model="newFields.work.accomplishments" />
-                </div>
-                <button class="save" @click="onFieldSubmit('work')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsAwards v-if="showEditDetails === 'work'" />
 
         <!-- Projects -->
-        <div v-if="showEditDetails === 'projects'">
-            <div class="items accordion" v-for="item in data.projects" :key="item._id">
-                <div class="item-accordion-title" @click="expandAccordion('projects', item._id)">{{item.name}}</div>
-                <span class="expand" :class="{expanded: item.isExpanded}">&#x2794;</span>
-                <div class="expanded-content" :class="{expanded: item.isExpanded}">
-                    <div class="input-containers">
-                        <label>Name:</label>
-                        <input type="text" v-model="editFields.projects.name" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Link:</label>
-                        <input type="text" v-model="editFields.projects.link" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Description: </label>
-                        <textarea rows="4" v-model="editFields.projects.description" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="editFields.projects.dateFrom" />
-                    </div>
-                    <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="editFields.projects.dateTo" />
-                    </div>
-                </div>
-            </div>
-            <div class="items accordion add-project">
-                Add Project
-                <div class="input-containers">
-                    <label>Name:</label>
-                    <input type="text" v-model="newFields.projects.name" />
-                </div>
-                <div class="input-containers">
-                    <label>Link:</label>
-                    <input type="text" v-model="newFields.projects.link" />
-                </div>
-                <div class="input-containers">
-                    <label>Description: </label>
-                    <textarea rows="4" v-model="newFields.projects.description" />
-                </div>
-                <div class="input-containers">
-                    <label>Date From:</label>
-                    <input type="text" v-model="newFields.projects.dateFrom" />
-                </div>
-                <div class="input-containers">
-                    <label>Date To:</label>
-                    <input type="text" v-model="newFields.projects.dateTo" />
-                </div>
-                <button class="save" @click="onFieldSubmit('projects')">Save</button>
-            </div>
-        </div>
+        <ContentEditorDetailsProjects v-if="showEditDetails === 'projects'" />
 
     </div>
 </template>
 
 <script>
+import ContentEditorDetailsBasics from './ContentEditorDetailsBasics';
+import ContentEditorDetailsSocials from './ContentEditorDetailsSocials';
+import ContentEditorDetailsHeader from './ContentEditorDetailsHeader';
+import ContentEditorDetailsSkills from './ContentEditorDetailsSkills';
+import ContentEditorDetailsAchievements from './ContentEditorDetailsAchievements';
+import ContentEditorDetailsConferences from './ContentEditorDetailsConferences';
+import ContentEditorDetailsCourses from './ContentEditorDetailsCourses';
+import ContentEditorDetailsSoftSkills from './ContentEditorDetailsSoftSkills';
+import ContentEditorDetailsTechnicalSkills from './ContentEditorDetailsTechnicalSkills';
+import ContentEditorDetailsEducation from './ContentEditorDetailsEducation';
+import ContentEditorDetailsVolunteer from './ContentEditorDetailsVolunteer';
+import ContentEditorDetailsPublications from './ContentEditorDetailsPublications';
+import ContentEditorDetailsReferences from './ContentEditorDetailsReferences';
+import ContentEditorDetailsLanguages from './ContentEditorDetailsLanguages';
+import ContentEditorDetailsInterests from './ContentEditorDetailsInterests';
+import ContentEditorDetailsCertificates from './ContentEditorDetailsCertificates';
+import ContentEditorDetailsAwards from './ContentEditorDetailsAwards';
+import ContentEditorDetailsWork from './ContentEditorDetailsWork';
+import ContentEditorDetailsProjects from './ContentEditorDetailsProjects';
+
 export default {
     name: "ContentEditorDetails",
-    data() {
-        return {
-            showEditDetails: 'education',
-            newFields: {
-                skills: '',
-                softSkills: '',
-                technicalSkills: '', 
-                languages: '',
-                interests: '',
-                projects: {
-                    name: '',
-                    link: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                },
-                work: {
-                    title: '',
-                    companyName: '',
-                    dateTo: '',
-                    dateTo: '',
-                    location: '',
-                    description: '',
-                    accomplishments: ''
-                },
-                awards: {
-                    name: '',
-                    instituteName: '',
-                    date: '',
-                    description: ''
-                }, 
-                certificates: {
-                    name: '',
-                    link: '',
-                    date: '',
-                    description: ''
-                },
-                references: {
-                    name: '',
-                    position: '',
-                    email: '',
-                    number: '',
-                    description: ''
-                },
-                publications: {
-                    name: '',
-                    authors: '',
-                    date: '',
-                    description: ''
-                },
-                volunteer: {
-                    title: '',
-                    companyName: '',
-                    dateTo: '',
-                    dateTo: '',
-                    location: '',
-                    description: ''
-                },
-                courses: {
-                    name: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                },
-                conferences: {
-                    name: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                },
-                achievements: {
-                    name: '',
-                    link: '',
-                    description: ''
-                },
-                education: {
-                    program: '',
-                    institute: '',
-                    place: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    course: ''
-                }
-            },
-            editFields: {
-                projects: {
-                    name: '',
-                    link: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                }, 
-                work: {
-                    title: '',
-                    companyName: '',
-                    dateTo: '',
-                    dateTo: '',
-                    location: '',
-                    description: '',
-                    accomplishments: ''
-                },
-                awards: {
-                    name: '',
-                    instituteName: '',
-                    date: '',
-                    description: ''
-                }, 
-                certificates: {
-                    name: '',
-                    link: '',
-                    date: '',
-                    description: ''
-                }, 
-                references: {
-                    name: '',
-                    position: '',
-                    email: '',
-                    number: '',
-                    description: ''
-                },
-                certificates: {
-                    name: '',
-                    link: '',
-                    date: '',
-                    description: ''
-                },
-                volunteer: {
-                    title: '',
-                    companyName: '',
-                    dateTo: '',
-                    dateTo: '',
-                    location: '',
-                    description: ''
-                },
-                courses: {
-                    name: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                },
-                conferences: {
-                    name: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    description: ''
-                },
-                achievements: {
-                    name: '',
-                    link: '',
-                    description: ''
-                },
-                education: {
-                    program: '',
-                    institute: '',
-                    place: '',
-                    dateFrom: '',
-                    dateTo: '',
-                    course: ''
-                }
-            },
-            data: {
-                name: "Sagnik Paul",
-                email: "sagnikpaul2882@gmail.com",
-                number: "+91-9674658599",
-                country: "India",
-                city: "Kolkata",
-                address: "40, Sisir Bagan Road,\nBehala",
-                website: "www.sagnikpaul.com",
-                social: {
-                    twitter: "https://twitter.com",
-                    linkedin: "https://twitter.com",
-                    facebook: "https://twitter.com",
-                    github: "https://twitter.com",
-                    stackoverflow: "https://twitter.com",
-                    instagram: "https://twitter.com",
-                    medium: "https://twitter.com",
-                    quora: "https://twitter.com"
-                },
-                intro: {
-                    title: "Professional Title",
-                    summary: "Short and engaging stuff about yourself"
-                },
-                skills: [
-                    {
-                        name: "HTML"
-                    }, {
-                        name: "CSS"
-                    }, {
-                        name: "Javascript"
-                    }, {
-                        name: "jQuery"
-                    }
-                ],
-                achievements: [
-                    { 
-                        _id: 1,
-                        name: "Achievement 1",
-                        link: null,
-                        description: "Some random description",
-                        dateFrom: null,
-                        dateTo: null
-                    }, { 
-                        _id: 2,
-                        name: "Achievement 2",
-                        link: "https://achievement.com",
-                        description: "Some description",
-                        dateFrom: "07/2018",
-                        dateTo: "09/2109"
-                    }, {
-                        _id: 3,
-                        name: "Achievement 3",
-                        link: null,
-                        description: null,
-                        dateFrom: "09/2019",
-                        dateTo: null
-                    }
-                ],
-                conferences: [
-                    {
-                        _id: 1,
-                        name: "Conference 1",
-                        link: null,
-                        description: "Some random description",
-                        dateFrom: null,
-                        dateTo: null
-                    }, { 
-                        _id: 2,
-                        name: "Conference 2",
-                        link: "https://achievement.com",
-                        description: "Some description",
-                        dateFrom: "07/2018",
-                        dateTo: "09/2109"
-                    }, { 
-                        _id: 3,
-                        name: "Conference 3",
-                        link: null,
-                        description: null,
-                        dateFrom: "09/2019",
-                        dateTo: null
-                    }
-                ],
-                courses: [
-                    {
-                        _id: 1,
-                        name: "Course 1",
-                        link: null,
-                        description: "Some random description",
-                        dateFrom: null,
-                        dateTo: null
-                    }, { 
-                        _id: 2,
-                        name: "Course 2",
-                        link: "https://achievement.com",
-                        description: "Some description",
-                        dateFrom: "07/2018",
-                        dateTo: "09/2109"
-                    }, { 
-                        _id: 3,
-                        name: "Course 3",
-                        link: null,
-                        description: null,
-                        dateFrom: "09/2019",
-                        dateTo: null
-                    }
-                ],
-                softSkills: [
-                    {
-                        name: "HTML"
-                    }, {
-                        name: "CSS"
-                    }, {
-                        name: "Javascript"
-                    }, {
-                        name: "jQuery"
-                    }
-                ],
-                technicalSkills: [
-                    {
-                        name: "HTML"
-                    }, {
-                        name: "CSS"
-                    }, {
-                        name: "Javascript"
-                    }, {
-                        name: "jQuery"
-                    }
-                ],
-                education: [
-                    {
-                        _id: 1,
-                        program: "12th",
-                        institute: "VMS",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        place: "Kolkara",
-                        course: "12th"
-                    }, {
-                        _id: 2,
-                        program: "12th",
-                        institute: "VMS",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        place: "Kolkara",
-                        course: "12th"
-                    }, {
-                        _id: 3,
-                        program: "12th",
-                        institute: "VMS",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        place: "Kolkara",
-                        course: "12th"
-                    }
-                ],
-                volunteer: [
-                    {
-                        _id: 1,
-                        title: "Some title",
-                        companyName: "some organization",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        location: "Kolkata",
-                        description: "Some random description"
-                    }, {
-                        _id: 2,
-                        title: "Some title",
-                        companyName: "some organization",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        location: "Kolkata",
-                        description: "Some random description"
-                    }, {
-                        _id: 3,
-                        title: "Some title",
-                        companyName: "some organization",
-                        dateFrom: "01/01/2019",
-                        dateTo: "01/01/2019",
-                        location: "Kolkata",
-                        description: "Some random description"
-                    }
-                ],
-                publications: [
-                    {
-                        _id: 1,
-                        type: '',
-                        title: "Publication 1",
-                        authors: "A, B, C",
-                        date: "01/01/2019",
-                        description: "some random description"
-                    }, {
-                        _id: 1,
-                        type: '',
-                        title: "Publication 2",
-                        authors: "A, B, C",
-                        date: "01/01/2019",
-                        description: "some random description"
-                    }
-                ],
-                references: [
-                    {
-                        _id: 1,
-                        name: "Dr N. K. Rout",
-                        position: "Some position",
-                        email: "email@email.com",
-                        number: "9674658599",
-                        description: "9674658599"
-                    }, {
-                        _id: 2,
-                        name: "Dr N. K. Rout",
-                        position: "Some position 1",
-                        email: "email@email.com",
-                        number: "9674658599",
-                        description: "9674658599"
-                    }, {
-                        _id: 3,
-                        name: "Dr N. K. Rout",
-                        position: "Some position 2",
-                        email: "email@email.com",
-                        number: "9674658599",
-                        description: "9674658599"
-                    }
-                ],
-                languages: [
-                    {
-                        name: "A"
-                    }, {
-                        name: "B"
-                    }, {
-                        name: "C"
-                    }, {
-                        name: "D"
-                    }
-                ],
-                interests: [
-                    {
-                        name: "HTML"
-                    }, {
-                        name: "CSS"
-                    }, {
-                        name: "Javascript"
-                    }, {
-                        name: "jQuery"
-                    }
-                ],
-                certificates: [
-                    {
-                        _id: 1,
-                        name: "Name",
-                        link: "somelink.com",
-                        date: "01/01/2018",
-                        description: "Some certificate"
-                    }, {
-                        _id: 2,
-                        name: "Name",
-                        link: "somelink1.com",
-                        date: "01/01/2018",
-                        description: "Some certificate"
-                    }, {
-                        _id: 3,
-                        name: "Name",
-                        link: "somelink2.com",
-                        date: "01/01/2018",
-                        description: "Some certificate"
-                    }
-                ],
-                awards: [
-                    {
-                        _id: 1,
-                        name: "Award 1",
-                        date: "01/01/2018",
-                        instituteName: "KIIT",
-                        description: "some award"
-                    }, {
-                        _id: 2,
-                        name: "Award 2",
-                        date: "01/01/2018",
-                        instituteName: "KIIT",
-                        description: "some award"
-                    }, {
-                        _id: 3,
-                        name: "Award 3",
-                        date: "01/01/2018",
-                        instituteName: "KIIT",
-                        description: "some award"
-                    }
-                ],
-                work: [
-                    {
-                        _id: 1,
-                        title: "Product Developer",
-                        companyName: "NowFloats",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2019",
-                        location: "Hyderabad",
-                        description: "Some random description",
-                        accomplishments: null,
-                    }, {
-                        _id: 2,
-                        title: "Product Developer",
-                        companyName: "NowFloats",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2019",
-                        location: "Hyderabad",
-                        description: "Some random description",
-                        accomplishments: null,
-                    }, {
-                        _id: 3,
-                        title: "Product Developer",
-                        companyName: "NowFloats",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2019",
-                        location: "Hyderabad",
-                        description: "Some random description",
-                        accomplishments: null,
-                    }
-                ],
-                projects: [
-                    {
-                        _id: 1,
-                        name: "project1",
-                        link: "somelink.com",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2018",
-                        description: "some random description"
-                    }, {
-                        _id: 2,
-                        name: "project2",
-                        link: "somelink.com",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2018",
-                        description: "some random description"
-                    }, {
-                        _id: 3,
-                        name: "project3",
-                        link: "somelink.com",
-                        dateFrom: "01/01/2018",
-                        dateTo: "01/01/2018",
-                        description: "some random description"
-                    }
-                ]
-            }
+    components: {
+        ContentEditorDetailsBasics,
+        ContentEditorDetailsSocials,
+        ContentEditorDetailsHeader,
+        ContentEditorDetailsSkills,
+        ContentEditorDetailsAchievements,
+        ContentEditorDetailsConferences,
+        ContentEditorDetailsCourses,
+        ContentEditorDetailsSoftSkills,
+        ContentEditorDetailsTechnicalSkills,
+        ContentEditorDetailsEducation,
+        ContentEditorDetailsVolunteer,
+        ContentEditorDetailsPublications,
+        ContentEditorDetailsReferences,
+        ContentEditorDetailsLanguages,
+        ContentEditorDetailsInterests,
+        ContentEditorDetailsCertificates,
+        ContentEditorDetailsAwards,
+        ContentEditorDetailsProjects
+    },
+    computed: {
+        data() {
+            return this.$store.state.data
+        },
+        showEditDetails() {
+            return this.$store.state.showEditDetails
+        },
+        editFields() {
+            return this.$store.state.editFields
+        },
+        newFields() {
+            return this.$store.state.newFields
         }
-    }, 
+    },
     methods: {
         onFieldSubmit(field) {
             /*
@@ -1372,15 +264,8 @@ export default {
             }
         },
         expandAccordion(field, id) {
-            this.data[field] = this.data[field].map(item => {
-                if (item.isExpanded) {
-                    delete item.isExpanded;
-                }else if (item._id === id) {
-                    item.isExpanded = true;
-                    this.editFields[field] = item;
-                }
-                return item;
-            })
+            console.log(id);
+            this.$store.dispatch('expandAccordion', {field, id});
         }
     }
 }
@@ -1414,13 +299,14 @@ export default {
 
     > div {
         .input-containers {
-            padding: 0;
+            margin-top: 15px;
+            padding: 15px 0 0;
+            border-top: 1px solid #1886d1;
 
             label {
                 display: block;
                 text-align: left;
                 margin-bottom: 2px;
-                margin-top: 10px;
                 color: #1886d1;
             }
 
@@ -1432,6 +318,7 @@ export default {
                 padding: 8px 10px;
                 font-size: 1rem;
                 border-radius: 4px;
+                margin-bottom: 10px;
 
                 &.add-item {
                     width: calc(100% - 90px);
@@ -1487,6 +374,7 @@ export default {
                 display: block;
                 margin: 10px 0;
                 cursor: pointer;
+                padding: 10px 12px;
 
                 .save {
                     background: transparent;
@@ -1528,6 +416,16 @@ export default {
 
                     &.expanded {
                         display: block;
+                    }
+                }
+
+                .input-containers {
+                    border: 0;
+                    margin: 0;
+                    padding: 0;
+
+                    &:nth-of-type(1) {
+                        margin-top: 10px;
                     }
                 }
             }
