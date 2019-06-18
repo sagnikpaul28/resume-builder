@@ -1,25 +1,26 @@
 <template>
     <div class="content-editor">
-        <ContentEditorDetails />
-        <div class="item">Basics</div>
-        <div class="item">Social</div>
-        <div class="item">Intro</div>
-        <div class="item">Skills</div>
-        <div class="item">Achievements</div>
-        <div class="item">Conferences</div>
-        <div class="item">Courses</div>
-        <div class="item">Soft Skills</div>
-        <div class="item">Technical Skills</div>
-        <div class="item">Education</div>
-        <div class="item">Volunteer Experience</div>
-        <div class="item">Publications</div>
-        <div class="item">References</div>
-        <div class="item">Languages</div>
-        <div class="item">Interests</div>
-        <div class="item">Certifications</div>
-        <div class="item">Awards</div>
-        <div class="item">Work Experience</div>
-        <div class="item">Projects</div>
+        <ContentEditorDetails v-if="showEditDetails" />
+        <div class="item" @click="showContentEditor('basics')">Basics</div>
+        <div class="item" @click="showContentEditor('social')">Social</div>
+        <div class="item" @click="showContentEditor('intro')">Intro</div>
+        <div class="item" @click="showContentEditor('skills')">Skills</div>
+        <div class="item" @click="showContentEditor('achievements')">Achievements</div>
+        <div class="item" @click="showContentEditor('conferences')">Conferences</div>
+        <div class="item" @click="showContentEditor('courses')">Courses</div>
+        <div class="item" @click="showContentEditor('softSkills')">Soft Skills</div>
+        <div class="item" @click="showContentEditor('technicalSkills')">Technical Skills</div>
+        <div class="item" @click="showContentEditor('education')">Education</div>
+        <div class="item" @click="showContentEditor('volunteer')">Volunteer Experience</div>
+        <div class="item" @click="showContentEditor('publications')">Publications</div>
+        <div class="item" @click="showContentEditor('references')">References</div>
+        <div class="item" @click="showContentEditor('languages')">Languages</div>
+        <div class="item" @click="showContentEditor('interests')">Interests</div>
+        <div class="item" @click="showContentEditor('certifications')">Certifications</div>
+        <div class="item" @click="showContentEditor('awards')">Awards</div>
+        <div class="item" @click="showContentEditor('work')">Work Experience</div>
+        <div class="item" @click="showContentEditor('projects')">Projects</div>
+        {{showEditDetails}}
     </div>
 </template>
 
@@ -28,13 +29,18 @@ import ContentEditorDetails from './ContentEditorDetails';
 
 export default {
     name: "ContentEditor",
-    data() {
-        return {
-            contentEditorSelected: null
+    computed: {
+        showEditDetails() {
+            return this.$store.state.showEditDetails
         }
     },
     components: {
         ContentEditorDetails
+    },
+    methods: {
+        showContentEditor(type) {
+            this.$store.dispatch('showContentEditor', type);
+        }
     }
 }
 </script>

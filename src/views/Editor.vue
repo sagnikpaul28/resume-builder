@@ -26,12 +26,18 @@ export default {
         ContentEditor,
         Navbar
     },
-    data() {
-        return {
-            showLayout: false,
-            showThemeColors: false,
-            showFontSelector: false,
-            showContentEditor: true
+    computed: {
+        showLayout() {
+            return this.$store.state.showLayout
+        },
+        showThemeColors() {
+            return this.$store.state.showThemeColors
+        },
+        showFontSelector() {
+            return this.$store.state.showFontSelector
+        },
+        showContentEditor() {
+            return this.$store.state.showContentEditor
         }
     }
 }

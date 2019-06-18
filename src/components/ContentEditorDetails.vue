@@ -105,17 +105,8 @@ export default {
         ContentEditorDetailsProjects
     },
     computed: {
-        data() {
-            return this.$store.state.data
-        },
         showEditDetails() {
             return this.$store.state.showEditDetails
-        },
-        editFields() {
-            return this.$store.state.editFields
-        },
-        newFields() {
-            return this.$store.state.newFields
         }
     },
     methods: {

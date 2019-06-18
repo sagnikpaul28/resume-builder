@@ -1,17 +1,22 @@
 <template>
     <div class="navbar">
         <ul>
-            <li>Font</li>
-            <li>Theme</li>
-            <li>Layout</li>
-            <li>Content</li>
+            <li @click="onClicked('font')">Font</li>
+            <li @click="onClicked('theme')">Theme</li>
+            <li @click="onClicked('layout')">Layout</li>
+            <li @click="onClicked('content')">Content</li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Navbar"
+    name: "Navbar",
+    methods: {
+        onClicked(item) {
+            this.$store.dispatch('onNavbatItemClicked', item);
+        }
+    }
 }
 </script>
 

@@ -5,7 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        showEditDetails: 'volunteer',
+        showLayout: false,
+        showThemeColors: false,
+        showFontSelector: false,
+        showContentEditor: false,
+        showEditDetails: null,
         data: {
             name: "Sagnik Paul",
             email: "sagnikpaul2882@gmail.com",
@@ -481,11 +485,43 @@ export default new Vuex.Store({
                 }
                 return item;
             })
+        },
+        onNavbatItemClicked(state, payload) {
+            if (payload === 'font') {
+                state.showLayout = false;
+                state.showThemeColors = false;
+                state.showContentEditor = false;
+                state.showFontSelector = !state.showFontSelector;
+            }else if (payload === 'theme') {
+                state.showLayout = false;
+                state.showFontSelector = false;
+                state.showContentEditor = false;
+                state.showThemeColors = !state.showThemeColors;
+            }else if (payload === 'layout') {
+                state.showThemeColors = false;
+                state.showFontSelector = false;
+                state.showContentEditor = false;
+                state.showLayout = !state.showLayout;
+            }else if (payload === 'content') {
+                state.showThemeColors = false;
+                state.showFontSelector = false;
+                state.showLayout = false;
+                state.showContentEditor = !state.showContentEditor;
+            }
+        },
+        showContentEditor(state, payload) {
+            state.showEditDetails = payload;
         }
     },
     actions: {
         expandAccordion(context, payload) {
             context.commit('expandAccordion', payload);
+        },
+        onNavbatItemClicked(context, payload) {
+            context.commit('onNavbatItemClicked', payload);
+        },
+        showContentEditor(context, payload) {
+            context.commit('showContentEditor', payload);
         }
     }
 })
