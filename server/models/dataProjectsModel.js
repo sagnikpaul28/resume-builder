@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataProjectsSchema = {
-    name: String
+    name: String,
+    link: String,
+    dateFrom: String,
+    dateTo: String,
+    description: String
 };
 
-exports.dataProjects = mongoose.model('DataProjects', dataProjectsSchema);;
+exports.dataProjects = dataProjectsSchema;

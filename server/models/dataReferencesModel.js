@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataReferencesSchema = {
     name: String,
     position: String,
@@ -8,4 +5,4 @@ const dataReferencesSchema = {
     number: String
 };
 
-exports.dataReferences = mongoose.model('DataReferences', dataReferencesSchema);;
+exports.dataReferences = dataReferencesSchema;

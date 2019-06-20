@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataConferencesSchema = {
     name: String,
     dateFrom: String, 
@@ -8,4 +5,4 @@ const dataConferencesSchema = {
     description: String
 };
 
-exports.dataConferences = mongoose.model('DataConferences', dataConferencesSchema);;
+exports.dataConferences = dataConferencesSchema

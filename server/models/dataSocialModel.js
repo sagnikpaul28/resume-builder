@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataSocialSchema = {
     twitter: String,
     linkedin: String,
@@ -12,4 +9,4 @@ const dataSocialSchema = {
     quora: String
 };
 
-exports.dataSocial = mongoose.model('DataSocial', dataSocialSchema);;
+exports.dataSocial = dataSocialSchema;

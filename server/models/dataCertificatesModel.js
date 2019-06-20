@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataCertificatesSchema = {
     name: String,
     link: String,
@@ -8,4 +5,4 @@ const dataCertificatesSchema = {
     description: String
 };
 
-exports.dataCertificates = mongoose.model('DataCertificates', dataCertificatesSchema);;
+exports.dataCertificates = dataCertificatesSchema;

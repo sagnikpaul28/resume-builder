@@ -1,8 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataVolunteerSchema = {
-    title: Stirng,
+    title: String,
     companyName: String,
     dateFrom: String,
     dateTo: String,
@@ -10,4 +7,4 @@ const dataVolunteerSchema = {
     description: String
 };
 
-exports.dataVolunteer = mongoose.model('DataVolunteer', dataVolunteerSchema);;
+exports.dataVolunteer = dataVolunteerSchema;

@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataPublicationsSchema = {
     type: String,
     title: String,
@@ -9,4 +6,4 @@ const dataPublicationsSchema = {
     description: String
 };
 
-exports.dataPublications = mongoose.model('DataPublications', dataPublicationsSchema);;
+exports.dataPublications = dataPublicationsSchema;

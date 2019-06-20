@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataEducationSchema = {
     program: String,
     institute: String,
@@ -10,4 +7,4 @@ const dataEducationSchema = {
     course: String
 };
 
-exports.dataEducation = mongoose.model('DataEducation', dataEducationSchema);;
+exports.dataEducation = dataEducationSchema;

@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataCoursesSchema = {
     name: String,
     dateFrom: String, 
@@ -8,4 +5,4 @@ const dataCoursesSchema = {
     description: String
 };
 
-exports.dataCourses = mongoose.model('DataCourses', dataCoursesSchema);;
+exports.dataCourses = dataCoursesSchema;

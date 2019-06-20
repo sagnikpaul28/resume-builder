@@ -1,6 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
 const dataWorkSchema = {
     title: String,
     companyName: String,
@@ -13,4 +10,4 @@ const dataWorkSchema = {
     contactPersonInfo: String
 };
 
-exports.dataWork = mongoose.model('DataWork', dataWorkSchema);;
+exports.dataWork = dataWorkSchema;

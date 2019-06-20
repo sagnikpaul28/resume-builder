@@ -1,5 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const LayoutItems = {
+    name: {
+        type: String,
+        required: true
+    }
+}
 
 const configSchema = {
     font: {
@@ -27,11 +31,4 @@ const configSchema = {
     }
 };
 
-const LayoutItems = {
-    name: {
-        type: String,
-        required: true
-    }
-}
-
-exports.configSchema = mongoose.model('dataConfig', configSchema);
+exports.configSchema = configSchema;

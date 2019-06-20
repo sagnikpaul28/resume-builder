@@ -38,10 +38,6 @@
             </div>
             <p :class="{selected: isSingleColumn}" class="singleColumnCheck" @click="toggleSingleColumnCheck">Use single Columnn</p>
         </div>
-        <div class="layout-footer">
-            <button class="btn save">Save</button>
-            <button class="btn cancel">Cancel</button>
-        </div>
     </div>
 </template>
 
