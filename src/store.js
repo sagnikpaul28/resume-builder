@@ -331,7 +331,7 @@ export default new Vuex.Store({
                 title: '',
                 companyName: '',
                 dateTo: '',
-                dateTo: '',
+                dateFrom: '',
                 location: '',
                 description: '',
                 accomplishments: ''
@@ -365,7 +365,7 @@ export default new Vuex.Store({
                 title: '',
                 companyName: '',
                 dateTo: '',
-                dateTo: '',
+                dateFrom: '',
                 location: '',
                 description: ''
             },
@@ -406,7 +406,7 @@ export default new Vuex.Store({
             work: {
                 title: '',
                 companyName: '',
-                dateTo: '',
+                dateFrom: '',
                 dateTo: '',
                 location: '',
                 description: '',
@@ -431,7 +431,7 @@ export default new Vuex.Store({
                 number: '',
                 description: ''
             },
-            certificates: {
+            publications: {
                 name: '',
                 link: '',
                 date: '',
@@ -441,7 +441,7 @@ export default new Vuex.Store({
                 title: '',
                 companyName: '',
                 dateTo: '',
-                dateTo: '',
+                dateFrom: '',
                 location: '',
                 description: ''
             },
@@ -488,6 +488,7 @@ export default new Vuex.Store({
             })
         },
         onNavbatItemClicked(state, payload) {
+            state.showEditDetails = null;
             if (payload === 'font') {
                 state.showLayout = false;
                 state.showThemeColors = false;
@@ -510,8 +511,13 @@ export default new Vuex.Store({
                 state.showContentEditor = !state.showContentEditor;
             }
         },
-        showContentEditor(state, payload) {
+        showContentEditorDetails(state, payload) {
             state.showEditDetails = payload;
+            state.showContentEditor = false;
+        },
+        hideContentEditorDetails(state) {
+            state.showEditDetails = null;
+            state.showContentEditor = true;
         }
     },
     actions: {
@@ -521,8 +527,11 @@ export default new Vuex.Store({
         onNavbatItemClicked(context, payload) {
             context.commit('onNavbatItemClicked', payload);
         },
-        showContentEditor(context, payload) {
-            context.commit('showContentEditor', payload);
+        showContentEditorDetails(context, payload) {
+            context.commit('showContentEditorDetails', payload);
+        },
+        hideContentEditorDetails(context) {
+            context.commit('hideContentEditorDetails');
         }
     }
 })

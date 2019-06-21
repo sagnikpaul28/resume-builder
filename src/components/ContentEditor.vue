@@ -1,9 +1,8 @@
 <template>
     <div class="content-editor">
-        <ContentEditorDetails v-if="showEditDetails" />
         <div class="item" @click="showContentEditor('basics')">Basics</div>
         <div class="item" @click="showContentEditor('social')">Social</div>
-        <div class="item" @click="showContentEditor('intro')">Intro</div>
+        <div class="item" @click="showContentEditor('header')">Intro</div>
         <div class="item" @click="showContentEditor('skills')">Skills</div>
         <div class="item" @click="showContentEditor('achievements')">Achievements</div>
         <div class="item" @click="showContentEditor('conferences')">Conferences</div>
@@ -20,26 +19,15 @@
         <div class="item" @click="showContentEditor('awards')">Awards</div>
         <div class="item" @click="showContentEditor('work')">Work Experience</div>
         <div class="item" @click="showContentEditor('projects')">Projects</div>
-        {{showEditDetails}}
     </div>
 </template>
 
 <script>
-import ContentEditorDetails from './ContentEditorDetails';
-
 export default {
     name: "ContentEditor",
-    computed: {
-        showEditDetails() {
-            return this.$store.state.showEditDetails
-        }
-    },
-    components: {
-        ContentEditorDetails
-    },
     methods: {
         showContentEditor(type) {
-            this.$store.dispatch('showContentEditor', type);
+            this.$store.dispatch('showContentEditorDetails', type);
         }
     }
 }

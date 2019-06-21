@@ -1,6 +1,6 @@
 <template>
     <div class="content-editor-details">
-        <p class="go-back">&#8678; Back</p>
+        <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
         <ContentEditorDetailsBasics v-if="showEditDetails === 'basics'" />
 
@@ -53,7 +53,7 @@
         <ContentEditorDetailsAwards v-if="showEditDetails === 'awards'" />
 
         <!-- Work -->
-        <ContentEditorDetailsAwards v-if="showEditDetails === 'work'" />
+        <ContentEditorDetailsWork v-if="showEditDetails === 'work'" />
 
         <!-- Projects -->
         <ContentEditorDetailsProjects v-if="showEditDetails === 'projects'" />
@@ -102,6 +102,7 @@ export default {
         ContentEditorDetailsInterests,
         ContentEditorDetailsCertificates,
         ContentEditorDetailsAwards,
+        ContentEditorDetailsWork,
         ContentEditorDetailsProjects
     },
     computed: {
@@ -110,153 +111,8 @@ export default {
         }
     },
     methods: {
-        onFieldSubmit(field) {
-            /*
-            ==========================
-            check if fields empty
-            write common code for insertion
-            save after edit fields
-            ==========================
-            */
-            if (field === 'projects') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    link: this.newFields[field].link,
-                    description: this.newFields[field].description
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'work') {
-                this.data[field].push({
-                    title: this.newFields[field].title,
-                    companyName: this.newFields[field].companyName,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    location: this.newFields[field].location,
-                    description: this.newFields[field].description,
-                    accomplishments: this.newFields[field].accomplishments
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'awards') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    instituteName: this.newFields[field].instituteName,
-                    date: this.newFields[field].date,
-                    description: this.newFields[field].description,
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'certificates') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    link: this.newFields[field].link,
-                    date: this.newFields[field].date,
-                    description: this.newFields[field].description,
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'achievements') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    link: this.newFields[field].link,
-                    description: this.newFields[field].description,
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'education') {
-                this.data[field].push({
-                    program: this.newFields[field].program,
-                    institute: this.newFields[field].institute,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    course: this.newFields[field].course,
-                    place: this.newFields[field].place
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'references') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    position: this.newFields[field].position,
-                    email: this.newFields[field].email,
-                    number: this.newFields[field].number,
-                    description: this.newFields[field].description,
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'volunteer') {
-                this.data[field].push({
-                    title: this.newFields[field].title,
-                    companyName: this.newFields[field].companyName,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    location: this.newFields[field].location,
-                    description: this.newFields[field].description
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'courses') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    description: this.newFields[field].description
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'conferences') {
-                this.data[field].push({
-                    name: this.newFields[field].name,
-                    dateFrom: this.newFields[field].dateFrom,
-                    dateTo: this.newFields[field].dateTo,
-                    description: this.newFields[field].description
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else if (field === 'publications') {
-                this.data[field].push({
-                    title: this.newFields[field].title,
-                    authors: this.newFields[field].authors,
-                    date: this.newFields[field].date,
-                    description: this.newFields[field].description,
-                });
-                
-                for (const key of Object.keys(this.newFields[field])) {
-                    this.newFields[field][key] = '';
-                }
-            }else {
-                this.data[field].push({
-                    name: this.newFields[field]
-                });
-                this.newFields[field] = null;
-            }
-        },
-        expandAccordion(field, id) {
-            console.log(id);
-            this.$store.dispatch('expandAccordion', {field, id});
+        hideContentEditorDetails() {
+            this.$store.dispatch('hideContentEditorDetails');
         }
     }
 }
@@ -267,7 +123,7 @@ export default {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    left: 0;
+    left: 120px;
     height: auto;
     max-height: 90%;
     overflow: scroll;
@@ -290,9 +146,8 @@ export default {
 
     > div {
         .input-containers {
-            margin-top: 15px;
-            padding: 15px 0 0;
-            border-top: 1px solid #1886d1;
+            margin-top: 2px;
+            padding: 2px 0 0;
 
             label {
                 display: block;

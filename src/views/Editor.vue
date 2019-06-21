@@ -7,6 +7,8 @@
         <FontSelector v-if="showFontSelector" />
         <ContentEditor v-if="showContentEditor" />
 
+        <ContentEditorDetails v-if="showEditDetails" />
+
     </div>
 </template>
 
@@ -16,6 +18,7 @@ import ThemeColors from '@/components/ThemeColors.vue';
 import FontSelector from '@/components/FontSelector.vue';
 import ContentEditor from '@/components/ContentEditor.vue';
 import Navbar from '@/components/Navbar.vue';
+import ContentEditorDetails from '@/components/ContentEditorDetails.vue';
 
 export default {
     name: "Editor",
@@ -24,9 +27,13 @@ export default {
         ThemeColors,
         FontSelector,
         ContentEditor,
-        Navbar
+        Navbar,
+        ContentEditorDetails
     },
     computed: {
+        showEditDetails() {
+            return this.$store.state.showEditDetails
+        },
         showLayout() {
             return this.$store.state.showLayout
         },
