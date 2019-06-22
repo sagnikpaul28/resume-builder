@@ -35,7 +35,7 @@ app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: true }));
 
 
 //Setup routes 
-router.get('/create-new-user', function(req, res, next) {
+router.post('/create-new-user', function(req, res, next) {
     UserDetails.findOne({
         email: req.body.email
     }).then(function(result) {
@@ -49,6 +49,34 @@ router.get('/create-new-user', function(req, res, next) {
             res.send('created');
         }
     });
+});
+
+router.get('/fetch-user', function(req, res, next) {
+    UserDetails.findOne({
+        email: req.body.email
+    }).then(function(result) {
+        if (result) {
+            res.send(result);
+        }else {
+            res.status(404).send('User doesn\'t exist');
+        }
+    })
+});
+
+router.post('/login', function(req, res, next) {
+    UserDetails.findOne({
+        email: req.body.email
+    }).then(function(result) {
+        if (result) {
+            if (result.password === req.body.password) {
+                res.send('ok');
+            }else { 
+                res.status(401).send('Incorrect Password');
+            }
+        }else {
+            res.status(404).send('Invalid username');
+        }
+    })
 });
 
 app.use('/', router);

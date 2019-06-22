@@ -2,31 +2,31 @@
     <div>
         <div class="input-containers">
             <label>Name: </label>
-            <input type="text" v-model="data.name" />
+            <input type="text" v-model="data.basics.name" />
         </div>
         <div class="input-containers">
             <label>Email: </label>
-            <input type="text" v-model="data.email" />
+            <input type="text" v-model="data.basics.email" />
         </div>
         <div class="input-containers">
             <label>Number: </label>
-            <input type="text" v-model="data.number" />
+            <input type="text" v-model="data.basics.number" />
         </div>
         <div class="input-containers">
             <label>Country: </label>
-            <input type="text" v-model="data.country" />
+            <input type="text" v-model="data.basics.country" />
         </div>
         <div class="input-containers">
             <label>City: </label>
-            <input type="text" v-model="data.city" />
+            <input type="text" v-model="data.basics.city" />
         </div>
         <div class="input-containers">
             <label>Address: </label>
-            <textarea rows="3" v-model="data.address" />
+            <textarea rows="3" v-model="data.basics.address" />
         </div>
         <div class="input-containers">
             <label>Website: </label>
-            <input type="text" v-model="data.website" />
+            <input type="text" v-model="data.basics.website" />
         </div>
     </div>
 </template>
