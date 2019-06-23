@@ -4,7 +4,8 @@ const dataBasicsSchema = {
     country: String,
     city: String,
     address: String,
-    website: String
+    firstName: String,
+    lastName: String
 };
 
 exports.dataBasics = dataBasicsSchema;

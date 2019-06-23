@@ -40,26 +40,16 @@ export default {
 
 <style lang="scss">
 .theme-colors {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 120px;
-    width: 90%;
-    height: 300px;
-    max-width: 550px;
-    background: #303d46;
-    border: 2px solid #1886d1;
     border-radius: 4px;
-    padding: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 
     .color {
-        width: 45px;
-        margin: 10px;
-        height: 45px;
+        width: 50px;
+        margin: 10px 12px;
+        height: 50px;
         border-radius: 50%;
         cursor: pointer;
 

@@ -134,21 +134,15 @@ export default {
 
 <style lang="scss">
 .layout {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 120px;
     height: auto;
-    background: #303d46;
-    border-right: 2px solid #1886d1;
     border-radius: 4px;
-    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 
     .left {
+        flex-basis: 600px;
+        margin-right: 15px;
 
         > p {
             margin: 10px 0;
@@ -164,13 +158,13 @@ export default {
                 padding: 5px;
                 background: #202c35;
                 border-radius: 4px;
-                width: 400px;
+                width: calc(100% - 10px);
 
                 p {
-                    flex-basis: calc(100%/3 - 12px);
+                    flex-basis: calc(100%/3 - 32px);
                     color: #1886d1;
-                    padding: 5px 0px;
-                    margin: 5px 5px;
+                    padding: 10px;
+                    margin: 5px;
                     border: 1px solid;
                     border-radius: 4px;
                     cursor: grab;

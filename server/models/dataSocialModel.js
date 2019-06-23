@@ -6,7 +6,8 @@ const dataSocialSchema = {
     stackoverflow: String,
     instagram: String,
     medium: String,
-    quora: String
+    quora: String,
+    website: String
 };
 
 exports.dataSocial = dataSocialSchema;

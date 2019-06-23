@@ -9,7 +9,7 @@
         <p class="ubuntu" @click="onFontSelect($event)">Ubuntu</p>
         <p class="pt-sans" @click="onFontSelect($event)">PT Sans</p>
         <p class="roboto-slab" @click="onFontSelect($event)">Roboto Slab</p>
-        <p class="encode-sans-expanded" @click="onFontSelect($event)">Encode Sans Expanded</p>
+        <p class="encode-sans-expanded" @click="onFontSelect($event)">Encode Sans</p>
         <p class="source-sans-pro" @click="onFontSelect($event)">Source Sans Pro</p>
         <p class="lato" @click="onFontSelect($event)">Lato</p>
         <p class="montserrat" @click="onFontSelect($event)">Montserrat</p>
@@ -32,17 +32,9 @@ export default {
 
 <style lang="scss">
 .font-selector {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 120px;
-    width: 90%;
     height: 300px;
-    max-width: 500px;
     background: #303d46;
-    border: 2px solid #1886d1;
     border-radius: 4px;
-    padding: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -52,7 +44,7 @@ export default {
         width: calc(50% - 50px);
         margin: 5px 10px 5px 40px;
         color: #1886d1;
-        font-size: 1rem;
+        font-size: 1.25em;
         text-align: left;
         position: relative;
 

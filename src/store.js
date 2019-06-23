@@ -13,15 +13,15 @@ export default new Vuex.Store({
         showEditDetails: null,
         data: {
             basics: {
-                name: "",
+                name: "Sagnik Paul",
                 email: "",
                 number: "",
                 country: "",
                 city: "",
                 address: "",
-                website: ""
             },
             social: {
+                website: "",
                 twitter: "",
                 linkedin: "",
                 facebook: "",

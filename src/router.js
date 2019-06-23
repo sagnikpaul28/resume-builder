@@ -17,6 +17,26 @@ export default new Router({
       path: '/editor',
       name: 'editor',
       component: () => import('./views/Editor.vue')
+    },
+    {
+      path: '/basics',
+      name: 'basics',
+      component: () => import('./views/Basics.vue')
+    },
+    {
+      path: '/config',
+      name: 'config',
+      component: () => import('./views/Config.vue')
+    },
+    {
+      path: '/header',
+      name: 'header',
+      component: () => import('./views/Header.vue')
+    },
+    {
+      path: '/social-media',
+      name: 'social-media',
+      component: () => import('./views/SocialMedia.vue')
     }
   ]
 })

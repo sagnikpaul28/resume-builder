@@ -2,14 +2,6 @@
     <div class="content-editor-details">
         <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
-        <ContentEditorDetailsBasics v-if="showEditDetails === 'basics'" />
-
-        <!-- Social -->
-        <ContentEditorDetailsSocials  v-if="showEditDetails === 'social'" />
-
-        <!-- Header -->
-        <ContentEditorDetailsHeader  v-if="showEditDetails === 'header'" />
-
         <!-- Skills -->
         <ContentEditorDetailsSkills  v-if="showEditDetails === 'skills'" />
 
@@ -62,9 +54,6 @@
 </template>
 
 <script>
-import ContentEditorDetailsBasics from './ContentEditorDetailsBasics';
-import ContentEditorDetailsSocials from './ContentEditorDetailsSocials';
-import ContentEditorDetailsHeader from './ContentEditorDetailsHeader';
 import ContentEditorDetailsSkills from './ContentEditorDetailsSkills';
 import ContentEditorDetailsAchievements from './ContentEditorDetailsAchievements';
 import ContentEditorDetailsConferences from './ContentEditorDetailsConferences';
@@ -85,9 +74,6 @@ import ContentEditorDetailsProjects from './ContentEditorDetailsProjects';
 export default {
     name: "ContentEditorDetails",
     components: {
-        ContentEditorDetailsBasics,
-        ContentEditorDetailsSocials,
-        ContentEditorDetailsHeader,
         ContentEditorDetailsSkills,
         ContentEditorDetailsAchievements,
         ContentEditorDetailsConferences,
