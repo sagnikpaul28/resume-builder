@@ -2,9 +2,6 @@
     <div class="content-editor-details">
         <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
-        <!-- Skills -->
-        <ContentEditorDetailsSkills  v-if="showEditDetails === 'skills'" />
-
         <!-- Achievements -->
         <ContentEditorDetailsAchievements v-if="showEditDetails === 'achievements'" />
 
@@ -13,12 +10,6 @@
 
         <!-- Courses -->
         <ContentEditorDetailsCourses v-if="showEditDetails === 'courses'" />
-
-        <!-- Soft Skills -->
-        <ContentEditorDetailsSoftSkills v-if="showEditDetails === 'softSkills'" />
-
-        <!-- Technical Skills -->
-        <ContentEditorDetailsTechnicalSkills v-if="showEditDetails === 'technicalSkills'" />
 
         <!-- Education -->
         <ContentEditorDetailsEducation v-if="showEditDetails === 'education'" />
@@ -31,12 +22,6 @@
 
         <!-- References -->
         <ContentEditorDetailsReferences v-if="showEditDetails === 'references'" />
-
-        <!-- Languages -->
-        <ContentEditorDetailsLanguages v-if="showEditDetails === 'languages'" />
-
-        <!-- Interests -->
-        <ContentEditorDetailsInterests v-if="showEditDetails === 'interests'" />
 
         <!-- Certificates -->
         <ContentEditorDetailsCertificates v-if="showEditDetails === 'certificates'" />
@@ -54,18 +39,13 @@
 </template>
 
 <script>
-import ContentEditorDetailsSkills from './ContentEditorDetailsSkills';
 import ContentEditorDetailsAchievements from './ContentEditorDetailsAchievements';
 import ContentEditorDetailsConferences from './ContentEditorDetailsConferences';
 import ContentEditorDetailsCourses from './ContentEditorDetailsCourses';
-import ContentEditorDetailsSoftSkills from './ContentEditorDetailsSoftSkills';
-import ContentEditorDetailsTechnicalSkills from './ContentEditorDetailsTechnicalSkills';
 import ContentEditorDetailsEducation from './ContentEditorDetailsEducation';
 import ContentEditorDetailsVolunteer from './ContentEditorDetailsVolunteer';
 import ContentEditorDetailsPublications from './ContentEditorDetailsPublications';
 import ContentEditorDetailsReferences from './ContentEditorDetailsReferences';
-import ContentEditorDetailsLanguages from './ContentEditorDetailsLanguages';
-import ContentEditorDetailsInterests from './ContentEditorDetailsInterests';
 import ContentEditorDetailsCertificates from './ContentEditorDetailsCertificates';
 import ContentEditorDetailsAwards from './ContentEditorDetailsAwards';
 import ContentEditorDetailsWork from './ContentEditorDetailsWork';
@@ -74,18 +54,13 @@ import ContentEditorDetailsProjects from './ContentEditorDetailsProjects';
 export default {
     name: "ContentEditorDetails",
     components: {
-        ContentEditorDetailsSkills,
         ContentEditorDetailsAchievements,
         ContentEditorDetailsConferences,
         ContentEditorDetailsCourses,
-        ContentEditorDetailsSoftSkills,
-        ContentEditorDetailsTechnicalSkills,
         ContentEditorDetailsEducation,
         ContentEditorDetailsVolunteer,
         ContentEditorDetailsPublications,
         ContentEditorDetailsReferences,
-        ContentEditorDetailsLanguages,
-        ContentEditorDetailsInterests,
         ContentEditorDetailsCertificates,
         ContentEditorDetailsAwards,
         ContentEditorDetailsWork,

@@ -37,6 +37,31 @@ export default new Router({
       path: '/social-media',
       name: 'social-media',
       component: () => import('./views/SocialMedia.vue')
+    },
+    {
+      path: '/skills',
+      name: 'skills',
+      component: () => import('./views/Skills.vue')
+    },
+    {
+      path: '/technical-skills',
+      name: 'technical-skills',
+      component: () => import('./views/TechnicalSkills.vue')
+    },
+    {
+      path: '/soft-skills',
+      name: 'soft-skills',
+      component: () => import('./views/SoftSkills.vue')
+    },
+    {
+      path: '/languages',
+      name: 'languages',
+      component: () => import('./views/Languages.vue')
+    },
+    {
+      path: '/interests',
+      name: 'interests',
+      component: () => import('./views/Interests.vue')
     }
   ]
 })
