@@ -62,6 +62,11 @@ export default new Router({
       path: '/interests',
       name: 'interests',
       component: () => import('./views/Interests.vue')
+    },
+    {
+      path: '/achievements',
+      name: 'achievements',
+      component: () => import('./views/Achievements.vue')
     }
   ]
 })

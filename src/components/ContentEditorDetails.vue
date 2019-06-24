@@ -2,9 +2,6 @@
     <div class="content-editor-details">
         <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
-        <!-- Achievements -->
-        <ContentEditorDetailsAchievements v-if="showEditDetails === 'achievements'" />
-
         <!-- Conferences -->
         <ContentEditorDetailsConferences v-if="showEditDetails === 'conferences'" />
 
@@ -39,7 +36,6 @@
 </template>
 
 <script>
-import ContentEditorDetailsAchievements from './ContentEditorDetailsAchievements';
 import ContentEditorDetailsConferences from './ContentEditorDetailsConferences';
 import ContentEditorDetailsCourses from './ContentEditorDetailsCourses';
 import ContentEditorDetailsEducation from './ContentEditorDetailsEducation';

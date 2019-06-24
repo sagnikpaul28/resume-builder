@@ -36,7 +36,22 @@ export default new Vuex.Store({
                 summary: ""
             },
             skills: [],
-            achievements: [],
+            achievements: [{
+                _id: 1,
+                name: "Achievement 1",
+                link: "",
+                description: "Some random description",
+            }, {
+                _id: 2,
+                name: "Achievement 2",
+                link: "https://achievement.com",
+                description: "Some description",
+            }, {
+                _id: 3,
+                name: "Achievement 3",
+                link: "",
+                description: "",
+            }],
             conferences: [],
             courses: [],
             softSkills: [],
@@ -255,6 +270,30 @@ export default new Vuex.Store({
         hideContentEditorDetails(state) {
             state.showEditDetails = null;
             state.showContentEditor = true;
+        },
+
+
+        openModal(state, payload) {
+            state.data[payload.type] = state.data[payload.type].map((item, index) => {
+                if (index === payload.index) {
+                    item.showModal = true;
+                }else if (item.showModal) {
+                    delete item.showModal;
+                }
+                return item;
+            });
+        },
+        closeModal(state, payload) {
+            state.data[payload.type] = state.data[payload.type].map(item => {
+                if (item.showModal) {
+                    delete item.showModal;
+                }
+                console.log(item);
+                return item;
+            });
+        },
+        deleteItem(state, payload) {
+            state.data[payload.type].splice(payload.index, 1);
         }
     },
     actions: {
@@ -269,6 +308,17 @@ export default new Vuex.Store({
         },
         hideContentEditorDetails(context) {
             context.commit('hideContentEditorDetails');
+        },
+
+
+        openModal(context, payload) {
+            context.commit('openModal', payload);
+        },
+        closeModal(context, payload) {
+            context.commit('closeModal', payload);
+        },
+        deleteItem(context, payload) {
+            context.commit('deleteItem', payload);
         }
     }
 })
