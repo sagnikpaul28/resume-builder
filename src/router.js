@@ -67,6 +67,31 @@ export default new Router({
       path: '/achievements',
       name: 'achievements',
       component: () => import('./views/Achievements.vue')
+    },
+    {
+      path: '/awards',
+      name: 'awards',
+      component: () => import('./views/Awards.vue')
+    },
+    {
+      path: '/certificates',
+      name: 'certificates',
+      component: () => import('./views/Certificates.vue')
+    },
+    {
+      path: '/conferences',
+      name: 'conferences',
+      component: () => import('./views/Conferences.vue')
+    },
+    {
+      path: '/courses',
+      name: 'courses',
+      component: () => import('./views/Courses.vue')
+    },
+    {
+      path: '/education',
+      name: 'education',
+      component: () => import('./views/Education.vue')
     }
   ]
 })

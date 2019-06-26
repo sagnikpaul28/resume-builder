@@ -1,14 +1,14 @@
 <template>
     <div class="editor">
-        <p class="title">All your related achievements</p>
+        <p class="title">All the courses you attended</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
-        <draggable class="list-group" :list="achievements" group="people"> 
+        <draggable class="list-group" :list="courses" group="people"> 
             <transition-group>
-                <div class="row" v-for="(achievement, index) in achievements" :key="index">
+                <div class="row" v-for="(course, index) in courses" :key="index">
                     <div class="col">
                         <div class="content">
-                            {{achievement.name}}
+                            {{course.name}}
                             <div class="edit" @click="openModal(index)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="#1886d1"><path fill-rule="evenodd" d="M15.26 3.86l-1.52 1.52-3.12-3.12L12.14.74c.16-.16.357-.24.59-.24.233 0 .43.08.59.24l1.94 1.94c.16.16.24.357.24.59 0 .233-.08.43-.24.59zM.5 12.38l9.22-9.22 3.12 3.12-9.22 9.22H.5v-3.12z"></path></svg>
                             </div>
@@ -17,18 +17,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="popup" :class="{'show': achievement.showModal}">
+                    <div class="popup" :class="{'show': course.showModal}">
                         <div class="row">
                             <div class="col">
                                 <div class="input-containers">
                                     <label>Name:</label>
-                                    <input type="text" v-model="achievement.name" />
+                                    <input type="text" v-model="course.name" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-containers">
                                     <label>Link:</label>
-                                    <input type="text" v-model="achievement.link" />
+                                    <input type="text" v-model="course.link" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-containers">
+                                    <label>Date From:</label>
+                                    <input type="text" v-model="course.dateFrom" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-containers">
+                                    <label>Date To:</label>
+                                    <input type="text" v-model="course.dateTo" />
                                 </div>
                             </div>
                         </div>
@@ -36,7 +50,7 @@
                             <div class="col">
                                 <div class="input-containers">
                                     <label>Description: </label>
-                                    <textarea rows="4" v-model="achievement.description" />
+                                    <textarea rows="4" v-model="course.description" />
                                 </div>
                             </div>
                         </div>
@@ -49,7 +63,7 @@
         </draggable>
 
         <div class="row footer">
-            <button class="btn add" @click="toggleNewItemModal()">Add Achievement</button>
+            <button class="btn add" @click="toggleNewItemModal()">Add courses</button>
             <button class="btn continue">Next</button>
         </div>
 
@@ -65,6 +79,20 @@
                     <div class="input-containers">
                         <label>Link:</label>
                         <input type="text" v-model="newFields.link" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-containers">
+                        <label>Date From:</label>
+                        <input type="text" v-model="newFields.dateFrom" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-containers">
+                        <label>Date To:</label>
+                        <input type="text" v-model="newFields.dateTo" />
                     </div>
                 </div>
             </div>
@@ -88,7 +116,7 @@
 import draggable from 'vuedraggable';
 
 export default {
-    name: "Achievements",
+    name: "courses",
     components: {
         draggable
     },
@@ -98,29 +126,29 @@ export default {
         }
     },
     computed: {
-        achievements() {
-            return this.$store.state.data.achievements
+        courses() {
+            return this.$store.state.data.courses
         },
         newFields() {
-            return this.$store.state.newFields.achievements
+            return this.$store.state.newFields.courses
         }
     },
     methods: {
         openModal(index) {
             this.$store.dispatch('openModal', {
-                type: 'achievements', 
+                type: 'courses', 
                 index
             });
         },
         closeModal(index) {
             this.$store.dispatch('closeModal', {
-                type: 'achievements', 
+                type: 'courses', 
                 index
             });
         },
         deleteItem(index) {
             this.$store.dispatch('deleteItem', {
-                type: 'achievements', 
+                type: 'courses', 
                 index
             });
         },
@@ -208,7 +236,6 @@ export default {
     .row {
         margin: 0 auto;
         max-width: 800px;
-        display: flex;
         width: 100%;
 
         .input-containers {

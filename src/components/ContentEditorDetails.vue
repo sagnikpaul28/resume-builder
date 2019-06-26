@@ -2,15 +2,6 @@
     <div class="content-editor-details">
         <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
-        <!-- Conferences -->
-        <ContentEditorDetailsConferences v-if="showEditDetails === 'conferences'" />
-
-        <!-- Courses -->
-        <ContentEditorDetailsCourses v-if="showEditDetails === 'courses'" />
-
-        <!-- Education -->
-        <ContentEditorDetailsEducation v-if="showEditDetails === 'education'" />
-
         <!-- Volunteer -->
         <ContentEditorDetailsVolunteer v-if="showEditDetails === 'volunteer'" />
 
@@ -19,12 +10,6 @@
 
         <!-- References -->
         <ContentEditorDetailsReferences v-if="showEditDetails === 'references'" />
-
-        <!-- Certificates -->
-        <ContentEditorDetailsCertificates v-if="showEditDetails === 'certificates'" />
-
-        <!-- Awards -->
-        <ContentEditorDetailsAwards v-if="showEditDetails === 'awards'" />
 
         <!-- Work -->
         <ContentEditorDetailsWork v-if="showEditDetails === 'work'" />
@@ -36,29 +21,18 @@
 </template>
 
 <script>
-import ContentEditorDetailsConferences from './ContentEditorDetailsConferences';
-import ContentEditorDetailsCourses from './ContentEditorDetailsCourses';
-import ContentEditorDetailsEducation from './ContentEditorDetailsEducation';
 import ContentEditorDetailsVolunteer from './ContentEditorDetailsVolunteer';
 import ContentEditorDetailsPublications from './ContentEditorDetailsPublications';
 import ContentEditorDetailsReferences from './ContentEditorDetailsReferences';
-import ContentEditorDetailsCertificates from './ContentEditorDetailsCertificates';
-import ContentEditorDetailsAwards from './ContentEditorDetailsAwards';
 import ContentEditorDetailsWork from './ContentEditorDetailsWork';
 import ContentEditorDetailsProjects from './ContentEditorDetailsProjects';
 
 export default {
     name: "ContentEditorDetails",
     components: {
-        ContentEditorDetailsAchievements,
-        ContentEditorDetailsConferences,
-        ContentEditorDetailsCourses,
-        ContentEditorDetailsEducation,
         ContentEditorDetailsVolunteer,
         ContentEditorDetailsPublications,
         ContentEditorDetailsReferences,
-        ContentEditorDetailsCertificates,
-        ContentEditorDetailsAwards,
         ContentEditorDetailsWork,
         ContentEditorDetailsProjects
     },

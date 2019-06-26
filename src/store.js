@@ -36,27 +36,36 @@ export default new Vuex.Store({
                 summary: ""
             },
             skills: [],
-            achievements: [{
-                _id: 1,
-                name: "Achievement 1",
-                link: "",
-                description: "Some random description",
-            }, {
-                _id: 2,
-                name: "Achievement 2",
-                link: "https://achievement.com",
-                description: "Some description",
-            }, {
-                _id: 3,
-                name: "Achievement 3",
-                link: "",
-                description: "",
-            }],
+            achievements: [],
             conferences: [],
             courses: [],
             softSkills: [],
             technicalSkills: [],
-            education: [],
+            education: [{
+                _id: 1,
+                program: "12th",
+                institute: "VMS",
+                dateFrom: "01/01/2019",
+                dateTo: "01/01/2019",
+                place: "Kolkara",
+                course: "12th"
+            }, {
+                _id: 2,
+                program: "12th",
+                institute: "VMS",
+                dateFrom: "01/01/2019",
+                dateTo: "01/01/2019",
+                place: "Kolkara",
+                course: "12th"
+            }, {
+                _id: 3,
+                program: "12th",
+                institute: "VMS",
+                dateFrom: "01/01/2019",
+                dateTo: "01/01/2019",
+                place: "Kolkara",
+                course: "12th"
+            }],
             volunteer: [],
             references: [],
             languages: [],
