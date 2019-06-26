@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewConferences()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -155,8 +155,25 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        addNewConferences() {
+            this.$store.dispatch('addDetails', {
+                type: "conferences",
+                value: {
+                    name: this.newFields.name,
+                    dateFrom: this.newFields.dateFrom,
+                    dateTo: this.newFields.dateTo,
+                    link: this.newFields.link,
+                    description: this.newFields.description
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.dateFrom = '';
+            this.newFields.dateTo = '';
+            this.newFields.link = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }

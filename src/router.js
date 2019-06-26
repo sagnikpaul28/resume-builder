@@ -14,11 +14,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/editor',
-      name: 'editor',
-      component: () => import('./views/Editor.vue')
-    },
-    {
       path: '/basics',
       name: 'basics',
       component: () => import('./views/Basics.vue')

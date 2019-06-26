@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All your related awards and recognitions</p>
+        <p class="title">Your awards and recognitions</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="awards" group="people"> 
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="onAddAwards()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -143,8 +143,23 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        onAddAwards() {
+            this.$store.dispatch('addDetails', {
+                type: "awards",
+                value: {
+                    name: this.newFields.name,
+                    date: this.newFields.date,
+                    institution: this.newFields.institution,
+                    description: this.newFields.description
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.date = '';
+            this.newFields.institution = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }

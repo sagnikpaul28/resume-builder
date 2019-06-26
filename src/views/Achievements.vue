@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All your related achievements</p>
+        <p class="title">Your achievements and accomplishments</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="achievements" group="people"> 
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -54,6 +54,9 @@
         </div>
 
         <div class="popup" :class="{'show': showNewItemAddModal}">
+            <div class="row">
+                <p>Add New Achievement</p>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="input-containers">
@@ -77,7 +80,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="onAddAchievement()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -127,8 +130,21 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        onAddAchievement() {
+            this.$store.dispatch('addDetails', {
+                type: "achievements",
+                value: {
+                    name: this.newFields.name,
+                    link: this.newFields.link,
+                    description: this.newFields.description
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.link = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }
@@ -149,6 +165,13 @@ export default {
 
 .row {
     margin: 0 -10px;
+
+    > p {
+        font-size: 1.75em;
+        width: 100%;
+        margin: 0 12px;
+        text-align: left;
+    }
 
     .col {
         .content {
@@ -225,6 +248,10 @@ export default {
                 font-size: 1em;
                 color: #1886d1;
             }
+        }
+
+        &.footer {
+            justify-content: flex-end;
         }
     }
 

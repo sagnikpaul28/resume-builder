@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All the courses you attended</p>
+        <p class="title">All the related courses you took</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="courses" group="people"> 
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewCourses()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -155,8 +155,25 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        addNewCourses() {
+            this.$store.dispatch('addDetails', {
+                type: "courses",
+                value: {
+                    name: this.newFields.name,
+                    dateFrom: this.newFields.dateFrom,
+                    dateTo: this.newFields.dateTo,
+                    link: this.newFields.link,
+                    description: this.newFields.description
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.link = '';
+            this.newFields.dateFrom = '';
+            this.newFields.dateTo = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }

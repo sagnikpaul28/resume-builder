@@ -44,28 +44,7 @@ export default new Vuex.Store({
             technicalSkills: [],
             education: [],
             volunteer: [],
-            references: [{
-                _id: 1,
-                name: "Dr N. K. Rout",
-                position: "Some position",
-                email: "email@email.com",
-                number: "9674658599",
-                description: "9674658599"
-            }, {
-                _id: 2,
-                name: "Dr N. K. Rout",
-                position: "Some position 1",
-                email: "email@email.com",
-                number: "9674658599",
-                description: "9674658599"
-            }, {
-                _id: 3,
-                name: "Dr N. K. Rout",
-                position: "Some position 2",
-                email: "email@email.com",
-                number: "9674658599",
-                description: "9674658599"
-            }],
+            references: [],
             languages: [],
             interests: [],
             certificates: [],
@@ -236,51 +215,6 @@ export default new Vuex.Store({
         //Send individual properties of data state through getters
     },
     mutations: {
-        expandAccordion(state, payload) {
-            state.data[payload.field] = state.data[payload.field].map(item => {
-                if (item.isExpanded) {
-                    delete item.isExpanded;
-                }else if (item._id === payload.id) {
-                    item.isExpanded = true;
-                    state.editFields[payload.field] = item;
-                }
-                return item;
-            })
-        },
-        onNavbatItemClicked(state, payload) {
-            state.showEditDetails = null;
-            if (payload === 'font') {
-                state.showLayout = false;
-                state.showThemeColors = false;
-                state.showContentEditor = false;
-                state.showFontSelector = !state.showFontSelector;
-            }else if (payload === 'theme') {
-                state.showLayout = false;
-                state.showFontSelector = false;
-                state.showContentEditor = false;
-                state.showThemeColors = !state.showThemeColors;
-            }else if (payload === 'layout') {
-                state.showThemeColors = false;
-                state.showFontSelector = false;
-                state.showContentEditor = false;
-                state.showLayout = !state.showLayout;
-            }else if (payload === 'content') {
-                state.showThemeColors = false;
-                state.showFontSelector = false;
-                state.showLayout = false;
-                state.showContentEditor = !state.showContentEditor;
-            }
-        },
-        showContentEditorDetails(state, payload) {
-            state.showEditDetails = payload;
-            state.showContentEditor = false;
-        },
-        hideContentEditorDetails(state) {
-            state.showEditDetails = null;
-            state.showContentEditor = true;
-        },
-
-
         openModal(state, payload) {
             state.data[payload.type] = state.data[payload.type].map((item, index) => {
                 if (index === payload.index) {
@@ -301,24 +235,14 @@ export default new Vuex.Store({
             });
         },
         deleteItem(state, payload) {
+            console.log(payload);
             state.data[payload.type].splice(payload.index, 1);
+        },
+        addDetails(state, payload) {
+            state.data[payload.type].push(payload.value);
         }
     },
     actions: {
-        expandAccordion(context, payload) {
-            context.commit('expandAccordion', payload);
-        },
-        onNavbatItemClicked(context, payload) {
-            context.commit('onNavbatItemClicked', payload);
-        },
-        showContentEditorDetails(context, payload) {
-            context.commit('showContentEditorDetails', payload);
-        },
-        hideContentEditorDetails(context) {
-            context.commit('hideContentEditorDetails');
-        },
-
-
         openModal(context, payload) {
             context.commit('openModal', payload);
         },
@@ -327,6 +251,9 @@ export default new Vuex.Store({
         },
         deleteItem(context, payload) {
             context.commit('deleteItem', payload);
+        },
+        addDetails(context, payload) {
+            context.commit('addDetails', payload);
         }
     }
 })
