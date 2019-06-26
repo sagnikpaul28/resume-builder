@@ -1,14 +1,14 @@
 <template>
     <div class="editor">
-        <p class="title">All your related education and recognitions</p>
+        <p class="title">All your related references</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
-        <draggable class="list-group" :list="education" group="people"> 
+        <draggable class="list-group" :list="references" group="people"> 
             <transition-group>
-                <div class="row" v-for="(educationItem, index) in education" :key="index">
+                <div class="row" v-for="(reference, index) in references" :key="index">
                     <div class="col">
                         <div class="content">
-                            {{educationItem.institute}}
+                            {{reference.name}}
                             <div class="edit" @click="openModal(index)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="#1886d1"><path fill-rule="evenodd" d="M15.26 3.86l-1.52 1.52-3.12-3.12L12.14.74c.16-.16.357-.24.59-.24.233 0 .43.08.59.24l1.94 1.94c.16.16.24.357.24.59 0 .233-.08.43-.24.59zM.5 12.38l9.22-9.22 3.12 3.12-9.22 9.22H.5v-3.12z"></path></svg>
                             </div>
@@ -17,46 +17,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="popup" :class="{'show': educationItem.showModal}">
+                    <div class="popup" :class="{'show': reference.showModal}">
                         <div class="row">
                             <div class="col">
                                 <div class="input-containers">
-                                    <label>Institute:</label>
-                                    <input type="text" v-model="educationItem.institute" />
+                                    <label>Name:</label>
+                                    <input type="text" v-model="reference.name" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-containers">
-                                    <label>Location:</label>
-                                    <input type="text" v-model="educationItem.place" />
+                                    <label>Position:</label>
+                                    <input type="text" v-model="reference.position" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="input-containers">
-                                    <label>Degree:</label>
-                                    <input type="text" v-model="educationItem.program" />
+                                    <label>Email:</label>
+                                    <input type="text" v-model="reference.email" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-containers">
-                                    <label>Field Of Study:</label>
-                                    <input type="text" v-model="educationItem.course" />
+                                    <label>Number:</label>
+                                    <input type="text" v-model="reference.number" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="input-containers">
-                                    <label>Date From:</label>
-                                    <input type="text" v-model="educationItem.dateFrom" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="input-containers">
-                                    <label>Date To:</label>
-                                    <input type="text" v-model="educationItem.dateTo" />
+                                    <label>Description: </label>
+                                    <textarea rows="4" v-model="reference.description" />
                                 </div>
                             </div>
                         </div>
@@ -69,7 +63,7 @@
         </draggable>
 
         <div class="row footer">
-            <button class="btn add" @click="toggleNewItemModal()">Add Education</button>
+            <button class="btn add" @click="toggleNewItemModal()">Add reference</button>
             <button class="btn continue">Next</button>
         </div>
 
@@ -77,42 +71,36 @@
             <div class="row">
                 <div class="col">
                     <div class="input-containers">
-                        <label>Institute:</label>
-                        <input type="text" v-model="newFields.institute" />
+                        <label>Name:</label>
+                        <input type="text" v-model="newFields.name" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="input-containers">
-                        <label>Location:</label>
-                        <input type="text" v-model="newFields.place" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="input-containers">
-                        <label>Degree:</label>
-                        <input type="text" v-model="newFields.program" />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-containers">
-                        <label>Field Of Study:</label>
-                        <input type="text" v-model="newFields.course" />
+                        <label>Position:</label>
+                        <input type="text" v-model="newFields.position" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="input-containers">
-                        <label>Date From:</label>
-                        <input type="text" v-model="newFields.dateFrom" />
+                        <label>Email:</label>
+                        <input type="text" v-model="newFields.email" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="input-containers">
-                        <label>Date To:</label>
-                        <input type="text" v-model="newFields.dateTo" />
+                        <label>Number:</label>
+                        <input type="text" v-model="newFields.number" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-containers">
+                        <label>Description: </label>
+                        <textarea rows="4" v-model="newFields.description" />
                     </div>
                 </div>
             </div>
@@ -128,7 +116,7 @@
 import draggable from 'vuedraggable';
 
 export default {
-    name: "Education",
+    name: "References",
     components: {
         draggable
     },
@@ -138,29 +126,29 @@ export default {
         }
     },
     computed: {
-        education() {
-            return this.$store.state.data.education
+        references() {
+            return this.$store.state.data.references
         },
         newFields() {
-            return this.$store.state.newFields.education
+            return this.$store.state.newFields.references
         }
     },
     methods: {
         openModal(index) {
             this.$store.dispatch('openModal', {
-                type: 'education', 
+                type: 'references', 
                 index
             });
         },
         closeModal(index) {
             this.$store.dispatch('closeModal', {
-                type: 'education', 
+                type: 'references', 
                 index
             });
         },
         deleteItem(index) {
             this.$store.dispatch('deleteItem', {
-                type: 'education', 
+                type: 'references', 
                 index
             });
         },
@@ -168,7 +156,7 @@ export default {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
         addNewItem() {
-            //save to array of achievements
+            //save to array of references
         }
     }
 }
@@ -248,6 +236,7 @@ export default {
     .row {
         margin: 0 auto;
         max-width: 800px;
+        display: flex;
         width: 100%;
 
         .input-containers {

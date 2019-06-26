@@ -2,39 +2,20 @@
     <div class="content-editor-details">
         <p class="go-back" @click="hideContentEditorDetails()">&#8678; Back</p>
 
-        <!-- Volunteer -->
-        <ContentEditorDetailsVolunteer v-if="showEditDetails === 'volunteer'" />
-
-        <!-- Publications -->
-        <ContentEditorDetailsPublications v-if="showEditDetails === 'publications'" />
-
         <!-- References -->
         <ContentEditorDetailsReferences v-if="showEditDetails === 'references'" />
-
-        <!-- Work -->
-        <ContentEditorDetailsWork v-if="showEditDetails === 'work'" />
-
-        <!-- Projects -->
-        <ContentEditorDetailsProjects v-if="showEditDetails === 'projects'" />
 
     </div>
 </template>
 
 <script>
-import ContentEditorDetailsVolunteer from './ContentEditorDetailsVolunteer';
-import ContentEditorDetailsPublications from './ContentEditorDetailsPublications';
 import ContentEditorDetailsReferences from './ContentEditorDetailsReferences';
-import ContentEditorDetailsWork from './ContentEditorDetailsWork';
-import ContentEditorDetailsProjects from './ContentEditorDetailsProjects';
 
 export default {
     name: "ContentEditorDetails",
     components: {
-        ContentEditorDetailsVolunteer,
-        ContentEditorDetailsPublications,
         ContentEditorDetailsReferences,
-        ContentEditorDetailsWork,
-        ContentEditorDetailsProjects
+        ContentEditorDetailsWork
     },
     computed: {
         showEditDetails() {

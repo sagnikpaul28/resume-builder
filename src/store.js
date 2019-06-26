@@ -40,34 +40,32 @@ export default new Vuex.Store({
             conferences: [],
             courses: [],
             softSkills: [],
+            publications: [],
             technicalSkills: [],
-            education: [{
+            education: [],
+            volunteer: [],
+            references: [{
                 _id: 1,
-                program: "12th",
-                institute: "VMS",
-                dateFrom: "01/01/2019",
-                dateTo: "01/01/2019",
-                place: "Kolkara",
-                course: "12th"
+                name: "Dr N. K. Rout",
+                position: "Some position",
+                email: "email@email.com",
+                number: "9674658599",
+                description: "9674658599"
             }, {
                 _id: 2,
-                program: "12th",
-                institute: "VMS",
-                dateFrom: "01/01/2019",
-                dateTo: "01/01/2019",
-                place: "Kolkara",
-                course: "12th"
+                name: "Dr N. K. Rout",
+                position: "Some position 1",
+                email: "email@email.com",
+                number: "9674658599",
+                description: "9674658599"
             }, {
                 _id: 3,
-                program: "12th",
-                institute: "VMS",
-                dateFrom: "01/01/2019",
-                dateTo: "01/01/2019",
-                place: "Kolkara",
-                course: "12th"
+                name: "Dr N. K. Rout",
+                position: "Some position 2",
+                email: "email@email.com",
+                number: "9674658599",
+                description: "9674658599"
             }],
-            volunteer: [],
-            references: [],
             languages: [],
             interests: [],
             certificates: [],
@@ -117,7 +115,8 @@ export default new Vuex.Store({
                 description: ''
             },
             publications: {
-                name: '',
+                title: '',
+                type: '',
                 authors: '',
                 date: '',
                 description: ''

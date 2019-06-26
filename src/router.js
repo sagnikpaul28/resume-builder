@@ -92,6 +92,31 @@ export default new Router({
       path: '/education',
       name: 'education',
       component: () => import('./views/Education.vue')
+    },
+    {
+      path: '/volunteer',
+      name: 'volunteer',
+      component: () => import('./views/Volunteer.vue')
+    },
+    {
+      path: '/publications',
+      name: 'publications',
+      component: () => import('./views/Publications.vue')
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: () => import('./views/Projects.vue')
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: () => import('./views/Work.vue')
+    },
+    {
+      path: '/references',
+      name: 'references',
+      component: () => import('./views/References.vue')
     }
   ]
 })
