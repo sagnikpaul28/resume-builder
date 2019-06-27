@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewProject()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -155,8 +155,25 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of projects
+        addNewProject() {
+            this.$store.dispatch('addDetails', {
+                type: "projects",
+                value: {
+                    name: this.newFields.name,
+                    link: this.newFields.link,
+                    dateFrom: this.newFields.dateFrom,
+                    dateTo: this.newFields.dateTo,
+                    description: this.newFields.description,
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.link = '';
+            this.newFields.dateFrom = '';
+            this.newFields.dateTo = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }
@@ -253,6 +270,10 @@ export default {
                 font-size: 1em;
                 color: #1886d1;
             }
+        }
+
+        &.footer {
+            justify-content: flex-end;
         }
     }
 

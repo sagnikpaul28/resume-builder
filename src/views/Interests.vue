@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">What are your interests?</p>
+        <p class="title">What are your hobbies and interests?</p>
         <p class="subtitle">Drag and drop to reorder</p>
         <div class="row">
             <draggable class="list-group" :list="data.interests" group="people"> 
@@ -8,6 +8,9 @@
                     <div class="col col-3" v-for="(interest, index) in data.interests" :key="index">
                         <div class="input-containers">
                             <input type="text" :value="interest.name" />
+                            <span class="delete" @click="deleteItem(index)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 12 16" style="overflow: hidden" fill="#1886d1"><path fill-rule="evenodd" d="M11.935 1.32V3H.295V1.32h2.9l.86-.82h4.14l.86.82h2.88zm-10.82 12.5v-10h10v10c0 .453-.167.847-.5 1.18-.333.333-.727.5-1.18.5h-6.64c-.453 0-.847-.167-1.18-.5a1.614 1.614 0 0 1-.5-1.18z"></path></svg>
+                            </span>
                         </div>
                     </div>
                 </transition-group>
@@ -42,7 +45,19 @@ export default {
     },
     methods: {
         onAddInterests() {
-            
+            this.$store.dispatch('addDetails', {
+                type: 'interests',
+                value: {
+                    name: this.newFields.interests
+                }
+            });
+            this.newFields.interests = '';
+        },
+        deleteItem(index) {
+            this.$store.dispatch('deleteItem', {
+                type: 'interests',
+                index
+            });
         }
     }
 }
@@ -82,6 +97,7 @@ export default {
             flex-direction: column;
             align-items: flex-start;
             margin: 10px;
+            position: relative;
 
             input, textarea {
                 background: transparent;
@@ -90,6 +106,15 @@ export default {
                 padding: 10px 15px;
                 font-size: 1em;
                 color: #1886d1;
+            }
+
+            .delete {
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                transform: translateY(-50%);
+                margin: 0;
+                cursor: pointer;
             }
         }
 

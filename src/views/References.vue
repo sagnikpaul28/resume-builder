@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All your related references</p>
+        <p class="title">List of people who refererred you</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="references" group="people"> 
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewReferences()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -155,8 +155,25 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of references
+        addNewReferences() {
+            this.$store.dispatch('addDetails', {
+                type: "references",
+                value: {
+                    name: this.newFields.name,
+                    position: this.newFields.position,
+                    email: this.newFields.email,
+                    number: this.newFields.number,
+                    description: this.newFields.description,
+                }
+            });
+
+            this.newFields.name = '';
+            this.newFields.position = '';
+            this.newFields.email = '';
+            this.newFields.number = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }
@@ -217,6 +234,10 @@ export default {
             color: #1886d1;
             border: 1px solid;
             margin: 10px 8px;
+        }
+
+        &.footer {
+            justify-content: flex-end;
         }
     }
 }

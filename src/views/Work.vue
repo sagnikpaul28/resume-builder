@@ -22,7 +22,7 @@
                             <div class="col">
                                 <div class="input-containers">
                                     <label>Profile:</label>
-                                    <input type="text" v-model="workItem.name" />
+                                    <input type="text" v-model="workItem.title" />
                                 </div>
                             </div>
                             <div class="col">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
         </draggable>
 
         <div class="row footer">
-            <button class="btn add" @click="toggleNewItemModal()">Add workItem</button>
+            <button class="btn add" @click="toggleNewItemModal()">Add Work Experience</button>
             <button class="btn continue">Next</button>
         </div>
 
@@ -80,7 +80,7 @@
                 <div class="col">
                     <div class="input-containers">
                         <label>Profile:</label>
-                        <input type="text" v-model="newFields.name" />
+                        <input type="text" v-model="newFields.title" />
                     </div>
                 </div>
                 <div class="col">
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewWork()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -171,8 +171,29 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of work
+        addNewWork() {
+            this.$store.dispatch('addDetails', {
+                type: "work",
+                value: {
+                    title: this.newFields.title,
+                    dateFrom: this.newFields.dateFrom,
+                    dateTo: this.newFields.dateTo,
+                    companyName: this.newFields.companyName,
+                    description: this.newFields.description,
+                    location: this.newFields.location,
+                    accomplishments: this.newFields.accomplishments,
+                }
+            });
+
+            this.newFields.title = '';
+            this.newFields.dateFrom = '';
+            this.newFields.dateTo = '';
+            this.newFields.companyName = '';
+            this.newFields.description = '';
+            this.newFields.location = '';
+            this.newFields.accomplishments = '';
+
+            this.toggleNewItemModal();
         }
     }
 }
@@ -269,6 +290,10 @@ export default {
                 font-size: 1em;
                 color: #1886d1;
             }
+        }
+
+        &.footer {
+            justify-content: flex-end;
         }
     }
 

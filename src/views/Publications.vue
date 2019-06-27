@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All the publications you attended</p>
+        <p class="title">Your publications and thesis</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="publications" group="people"> 
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewPublication()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -155,8 +155,25 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        addNewPublication() {
+            this.$store.dispatch('addDetails', {
+                type: "publications",
+                value: {
+                    title: this.newFields.title,
+                    type: this.newFields.type,
+                    date: this.newFields.date,
+                    authors: this.newFields.authors,
+                    description: this.newFields.description,
+                }
+            });
+
+            this.newFields.title = '';
+            this.newFields.type = '';
+            this.newFields.date = '';
+            this.newFields.authors = '';
+            this.newFields.description = '';
+
+            this.toggleNewItemModal();
         }
     }
 }

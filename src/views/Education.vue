@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All your related education and recognitions</p>
+        <p class="title">School, colleges and universities you attended</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="education" group="people"> 
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row footer">
-                            <button class="btn close" @click="closeModal(index)">Close</button>
+                            <button class="btn close" @click="closeModal(index)">Save</button>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="row footer">
-                <button class="btn add" @click="addNewItem()">Add</button> 
+                <button class="btn add" @click="addNewEducation()">Add</button> 
                 <button class="btn close" @click="toggleNewItemModal()">Cancel</button>
             </div>
         </div>
@@ -167,8 +167,27 @@ export default {
         toggleNewItemModal() {
             this.showNewItemAddModal = !this.showNewItemAddModal;
         },
-        addNewItem() {
-            //save to array of achievements
+        addNewEducation() {
+            this.$store.dispatch('addDetails', {
+                type: "education",
+                value: {
+                    institute: this.newFields.institute,
+                    place: this.newFields.place,
+                    dateFrom: this.newFields.dateFrom,
+                    dateTo: this.newFields.dateTo,
+                    program: this.newFields.program,
+                    course: this.newFields.course
+                }
+            });
+
+            this.newFields.institute = '';
+            this.newFields.place = '';
+            this.newFields.dateFrom = '';
+            this.newFields.dateTo = '';
+            this.newFields.program = '';
+            this.newFields.course = '';
+
+            this.toggleNewItemModal();
         }
     }
 }
