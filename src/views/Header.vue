@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">A little more about yourself</p>
+        <p class="title">Introduction</p>
         <p class="subtitle">A good summary helps you to stand out from the rest.</p>
         <div class="row">
             <div class="col">

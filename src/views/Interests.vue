@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">What are your hobbies and interests?</p>
+        <p class="title">Interests</p>
         <p class="subtitle">Drag and drop to reorder</p>
         <div class="row">
             <draggable class="list-group" :list="data.interests" group="people"> 
@@ -146,7 +146,7 @@ export default {
             background: transparent;
             border: 1px solid #1886d1;
             width: 90px;
-            padding: 10px 15px;
+            padding: 15px;
             font-size: 1em;
             color: #1886d1;
         }

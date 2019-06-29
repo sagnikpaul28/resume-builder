@@ -16,13 +16,12 @@
 
 body {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: calc(100vh - 4em);
   background: #303d46;
   color: #1886d1;
-  padding: 0 1em;
+  padding: 2em 1em;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .row {

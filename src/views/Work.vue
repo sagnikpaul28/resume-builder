@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <p class="title">All your related work</p>
+        <p class="title">Work Experience</p>
         <p class="subtitle">Drag and drop to reorder</p>
 
         <draggable class="list-group" :list="work" group="people"> 
@@ -71,7 +71,7 @@
         </draggable>
 
         <div class="row footer">
-            <button class="btn add" @click="toggleNewItemModal()">Add Work Experience</button>
+            <button class="btn add-new" @click="toggleNewItemModal()"><span>+</span> Work Experience</button>
             <button class="btn continue">Next</button>
         </div>
 
@@ -254,6 +254,30 @@ export default {
             color: #1886d1;
             border: 1px solid;
             margin: 10px 8px;
+            cursor: pointer;
+
+            &.add-new {
+                width: calc(100% - 20px);
+                border: 2px dashed;
+                padding: 20px 30px;
+                margin: 20px 8px;
+                transition: 1s;
+
+                &:hover {
+                    border: 2px solid;
+                }
+
+                span {
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    border-radius: 50%;
+                    border: 1px solid;
+                    position: relative;
+                    top: -1px;
+                    left: -2px;
+                }
+            }
         }
     }
 }
