@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col">
                 <div class="input-containers">
-                    <label>Title: </label>
-                    <input type="text" v-model="data.intro.title" />
+                    <label>Professional Summary: </label>
+                    <input type="text" v-model="data.intro.summary" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="input-containers">
-                    <label>Professional Summary: </label>
-                    <textarea rows="4" v-model="data.intro.summary" />
+                    <label>Career Objective: </label>
+                    <textarea rows="4" v-model="data.intro.title" />
                 </div>
             </div>
         </div>

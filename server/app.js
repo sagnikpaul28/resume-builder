@@ -79,6 +79,17 @@ router.post('/login', function(req, res, next) {
     })
 });
 
+router.post('/save-details', function(req, res, next) {
+    UserDetails.findOneAndUpdate({
+        email: req.body.email
+    }, { 
+        [req.body.field]: JSON.parse(req.body.value)
+    }).then(function(result) {
+        console.log(result);
+        res.send(result);
+    })
+})
+
 app.use('/', router);
 
 

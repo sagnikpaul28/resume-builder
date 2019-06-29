@@ -22,7 +22,7 @@ const dataVolunteer = require('./dataVolunteerModel');
 const dataWork = require('./dataWorkModel');
 
 const dataSchema = {
-    basics: [dataBasics.dataBasics],
+    basics: dataBasics.dataBasics,
     achievements: [dataAchievements.dataAchievements],
     awards: [dataAwards.dataAwards],
     certificates: [dataCertificates.dataCertificates],
@@ -36,7 +36,7 @@ const dataSchema = {
     publications: [dataPublications.dataPublications],
     references: [dataReferences.dataReferences],
     skills: [dataSkills.dataSkills],
-    socials: [dataSocials.dataSocial],
+    socials: dataSocials.dataSocial,
     softSkills: [dataSoftSkills.dataSoftSkills],
     technicalSkills: [dataTechnicalSkills.dataTechnicalSkills],
     volunteer: [dataVolunteer.dataVolunteer],
