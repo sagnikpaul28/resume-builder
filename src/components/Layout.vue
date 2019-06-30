@@ -36,7 +36,6 @@
                     </transition-group>
                 </draggable>
             </div>
-            <p :class="{selected: isSingleColumn}" class="singleColumnCheck" @click="toggleSingleColumnCheck">Use single Columnn</p>
         </div>
     </div>
 </template>
@@ -116,18 +115,6 @@ export default {
             },
             isSingleColumn: false
         }
-    },
-    methods: {
-        toggleSingleColumnCheck() {
-            this.isSingleColumn = !this.isSingleColumn;
-            if (this.isSingleColumn) {
-                this.selectedLayoutArray.combinedArray = [...this.selectedLayoutArray.leftArray, ...this.selectedLayoutArray.rightArray]
-            }else {
-                this.selectedLayoutArray.leftArray = this.selectedLayoutArray.combinedArray.slice(0, (this.selectedLayoutArray.combinedArray.length + 1)/ 3);
-                this.selectedLayoutArray.rightArray = this.selectedLayoutArray.combinedArray.slice((this.selectedLayoutArray.combinedArray.length / 3 + 1), this.selectedLayoutArray.combinedArray.length);
-            }
-        }
-        
     }
 }
 </script>
@@ -141,7 +128,7 @@ export default {
     align-items: center;
 
     .left {
-        flex-basis: 600px;
+        flex: 1;
         margin-right: 15px;
 
         > p {
@@ -178,7 +165,7 @@ export default {
     }
 
     .right{
-        width: 100%;
+        flex-basis: 370px;
         
         > p {
             margin: 0px 0 10px;

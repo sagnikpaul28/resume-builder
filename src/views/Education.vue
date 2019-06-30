@@ -70,7 +70,8 @@
 
         <div class="row footer">
             <button class="btn add-new" @click="toggleNewItemModal()"><span>+</span> Add Education</button>
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Back</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
 
         <div class="popup" :class="{'show': showNewItemAddModal}">
@@ -188,6 +189,24 @@ export default {
             this.newFields.course = '';
 
             this.toggleNewItemModal();
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "education",
+                    "value": JSON.stringify(this.education)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(res => {
+                this.$router.push('header');
+            })
+        },
+        onButtonBack() {
+            this.$router.go(-1);
         }
     }
 }

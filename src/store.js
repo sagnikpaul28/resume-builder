@@ -32,8 +32,7 @@ export default new Vuex.Store({
                 quora: ""
             },
             intro: {
-                title: "",
-                summary: ""
+                objective: ""
             },
             skills: [],
             achievements: [],

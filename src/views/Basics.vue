@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="row footer">
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
     </div>
 </template>
@@ -58,6 +58,23 @@ export default {
     computed: {
         data() {
             return this.$store.state.data
+        }
+    },
+    methods: {
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "basics",
+                    "value": JSON.stringify(this.data.basics)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(res => {
+                this.$router.push('education');
+            })
         }
     }
 }

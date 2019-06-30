@@ -85,7 +85,6 @@ router.post('/save-details', function(req, res, next) {
     }, { 
         [req.body.field]: JSON.parse(req.body.value)
     }).then(function(result) {
-        console.log(result);
         res.send(result);
     })
 })

@@ -1,6 +1,5 @@
 const dataHeaderSchema = {
-    title: String,
-    summary: String
+    objective: String
 };
 
 exports.dataHeader = dataHeaderSchema

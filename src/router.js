@@ -112,6 +112,11 @@ export default new Router({
       path: '/references',
       name: 'references',
       component: () => import('./views/References.vue')
+    },
+    {
+      path: '/add-section',
+      name: 'addSection',
+      component: () => import('./views/AddSection.vue')
     }
   ]
 })

@@ -22,7 +22,8 @@
             <button type="btn" class="btn" @click="onAddSkill()">Add</button>
         </div>
         <div class="row footer">
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Prev</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
     </div>
 </template>
@@ -58,6 +59,24 @@ export default {
                 type: 'skills',
                 index
             });
+        },
+        onButtonBack() {
+            this.$router.go(-1);
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "skills",
+                    "value": JSON.stringify(this.data.skills)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(res => {
+                this.$router.push('add-section');
+            })
         }
     }
 }

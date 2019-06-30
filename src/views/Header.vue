@@ -5,21 +5,14 @@
         <div class="row">
             <div class="col">
                 <div class="input-containers">
-                    <label>Professional Summary: </label>
-                    <input type="text" v-model="data.intro.summary" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="input-containers">
                     <label>Career Objective: </label>
-                    <textarea rows="4" v-model="data.intro.title" />
+                    <textarea rows="4" v-model="data.intro.objective" />
                 </div>
             </div>
         </div>
         <div class="row footer">
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Back</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
     </div>
 </template>
@@ -30,6 +23,26 @@ export default {
     computed: {
         data() {
             return this.$store.state.data
+        }
+    },
+    methods: {
+        onButtonBack() {
+            this.$router.go(-1);
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "header",
+                    "value": JSON.stringify(this.data.intro)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(res => {
+                this.$router.push('skills');
+            })
         }
     }
 }
