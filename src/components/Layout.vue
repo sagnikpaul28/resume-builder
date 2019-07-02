@@ -115,6 +115,15 @@ export default {
             },
             isSingleColumn: false
         }
+    },
+    computed: {
+        layoutArray() {
+            return this.$store.state.layoutArray
+        },
+        selectedLayoutArray: {
+            leftArray: this.layoutArray.slice(0, this.layoutArray.length/3),
+            rightArray: this.layoutArray.slice(this.layoutArray.length/3, this.layoutArray.length)
+        }
     }
 }
 </script>

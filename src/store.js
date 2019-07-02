@@ -11,6 +11,13 @@ export default new Vuex.Store({
         showFontSelector: false,
         showContentEditor: false,
         showEditDetails: null,
+        selectedArray: [],
+        layoutArray: [
+            "basics",
+            "education",
+            "intro",
+            "skills"
+        ],
         data: {
             basics: {
                 name: "Sagnik Paul",
