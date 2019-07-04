@@ -56,6 +56,7 @@ export default {
             this.$router.go(-1);
         },
         onButtonSubmit() {
+            this.$store.dispatch('onComponentsSelect');
             this.$router.push('layout');
         }
     }

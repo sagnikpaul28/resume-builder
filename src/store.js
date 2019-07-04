@@ -6,18 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         id: 1,
-        showLayout: false,
-        showThemeColors: false,
-        showFontSelector: false,
-        showContentEditor: false,
-        showEditDetails: null,
         selectedArray: [],
-        layoutArray: [
-            "basics",
-            "education",
-            "intro",
-            "skills"
-        ],
+        layoutArray: [],
         data: {
             basics: {
                 name: "Sagnik Paul",
@@ -38,7 +28,7 @@ export default new Vuex.Store({
                 medium: "",
                 quora: ""
             },
-            intro: {
+            header: {
                 objective: ""
             },
             skills: [],
@@ -56,7 +46,14 @@ export default new Vuex.Store({
             certificates: [],
             awards: [],
             work: [],
-            projects: []
+            projects: [],
+            selectedLayoutArray: {
+                leftArray: [],
+                rightArray: [],
+                combinedArray: []
+            },
+            font: "",
+            themeColor: ""
         },
         newFields: {
             skills: '',
@@ -246,6 +243,20 @@ export default new Vuex.Store({
         },
         addDetails(state, payload) {
             state.data[payload.type].push(payload.value);
+        },
+        onComponentsSelect(state) {
+            state.layoutArray = ["Basics", "Skills", "Education", "Intro", ...state.selectedArray];
+            state.data.selectedLayoutArray.leftArray = state.layoutArray.slice(0, state.layoutArray.length/3 + 1);
+            state.data.selectedLayoutArray.rightArray = state.layoutArray.slice(state.layoutArray.length/3 + 1, state.layoutArray.length);
+            state.data.selectedLayoutArray.combinedArray = [...state.layoutArray];
+        },
+        fontSelect(state, payload) {
+            state.data.font = payload;
+            console.log(state.data.font);
+        },
+        colorSelect(state,payload) {
+            state.data.themeColor = payload;
+            console.log(state.data.themeColor);
         }
     },
     actions: {
@@ -260,6 +271,15 @@ export default new Vuex.Store({
         },
         addDetails(context, payload) {
             context.commit('addDetails', payload);
+        },
+        onComponentsSelect(context) {
+            context.commit('onComponentsSelect');
+        },
+        fontSelect(context, payload) {
+            context.commit('fontSelect', payload);
+        },
+        colorSelect(context, payload) {
+            context.commit('colorSelect', payload);
         }
     }
 })

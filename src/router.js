@@ -19,9 +19,9 @@ export default new Router({
       component: () => import('./views/Basics.vue')
     },
     {
-      path: '/config',
-      name: 'config',
-      component: () => import('./views/Config.vue')
+      path: '/customize',
+      name: 'customize',
+      component: () => import('./views/Customize.vue')
     },
     {
       path: '/header',
@@ -117,6 +117,11 @@ export default new Router({
       path: '/add-section',
       name: 'addSection',
       component: () => import('./views/AddSection.vue')
+    },
+    {
+      path: '/layout',
+      name: 'layout',
+      component: () => import('./views/Layout.vue')
     }
   ]
 })

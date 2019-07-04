@@ -1,21 +1,6 @@
 <template>
     <div class="font-selector">
-        <p class="quicksand" @click="onFontSelect($event)">Quicksand</p>
-        <p class="noto-seriff" @click="onFontSelect($event)">Noto Seriff</p>
-        <p class="tittilium-web" @click="onFontSelect($event)">Tittilium Web</p>
-        <p class="pt-serff" @click="onFontSelect($event)">PT Seriff</p>
-        <p class="muli" @click="onFontSelect($event)">Muli</p>
-        <p class="lora" @click="onFontSelect($event)">Lora</p>
-        <p class="ubuntu" @click="onFontSelect($event)">Ubuntu</p>
-        <p class="pt-sans" @click="onFontSelect($event)">PT Sans</p>
-        <p class="roboto-slab" @click="onFontSelect($event)">Roboto Slab</p>
-        <p class="encode-sans-expanded" @click="onFontSelect($event)">Encode Sans</p>
-        <p class="source-sans-pro" @click="onFontSelect($event)">Source Sans Pro</p>
-        <p class="lato" @click="onFontSelect($event)">Lato</p>
-        <p class="montserrat" @click="onFontSelect($event)">Montserrat</p>
-        <p class="open-sans" @click="onFontSelect($event)">Open Sans</p>
-        <p class="noto-sans-hk" @click="onFontSelect($event)">Noto Sans Hk</p>
-        <p class="roboto" @click="onFontSelect($event)">Roboto</p>
+        <p v-for="item in fonts" :key="item.id" :class="[item.id, {active: item.id === font}]" @click="onFontSelect($event)">{{item.name}}</p>
     </div>
 </template>
 
@@ -24,7 +9,65 @@ export default {
     name: "FontSelector",
     methods: {
         onFontSelect(e) {
-            console.log(e.target.className);
+            this.$store.dispatch('fontSelect', e.target.className.split(' ')[0]);
+        }
+    },
+    computed: {
+        font() {
+            return this.$store.state.data.font
+        }
+    },
+    data() {
+        return {
+            fonts: [{
+                id: "quicksand",
+                name: "Quicksand"
+            }, {
+                id: "noto-seriff",
+                name: "Noto Seriff"
+            }, {
+                id: "tittilium-web",
+                name: "Tittilium Web"
+            }, {
+                id: "pt-serff",
+                name: "PT Seriff"
+            }, {
+                id: "muli",
+                name: "Muli"
+            }, {
+                id: "lora",
+                name: "Lora"
+            }, {
+                id: "ubuntu",
+                name: "Ubuntu"
+            }, {
+                id: "pt-sans",
+                name: "PT Sans"
+            }, {
+                id: "roboto-slab",
+                name: "Roboto Slab"
+            }, {
+                id: "encode-sans-expanded",
+                name: "Encode Sans"
+            }, {
+                id: "source-sans-pro",
+                name: "Source Sans"
+            }, {
+                id: "lato",
+                name: "Lato"
+            }, {
+                id: "montserrat",
+                name: "Montserrat"
+            }, {
+                id: "open-sans",
+                name: "Open Sans"
+            }, {
+                id: "noto-sans-hk",
+                name: "Noto Sans"
+            }, {
+                id: "roboto",
+                name: "Roboto"
+            }, ]
         }
     }
 }
@@ -123,8 +166,8 @@ export default {
             font-family: 'Quicksand', sans-serif;
         }
 
-        &.selected {
-            :before {
+        &.active {
+            &:before {
                 background: #1886d1;
             }
         }

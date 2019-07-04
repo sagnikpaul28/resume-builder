@@ -6,7 +6,7 @@
             <div class="col">
                 <div class="input-containers">
                     <label>Career Objective: </label>
-                    <textarea rows="4" v-model="data.intro.objective" />
+                    <textarea rows="4" v-model="header.objective" />
                 </div>
             </div>
         </div>
@@ -21,8 +21,8 @@
 export default {
     name: "Basics",
     computed: {
-        data() {
-            return this.$store.state.data
+        header() {
+            return this.$store.state.data.header
         }
     },
     methods: {
@@ -35,7 +35,7 @@ export default {
                 body: JSON.stringify({
                     "email": "sagnikpaul2882@gmail.com",
                     "field": "header",
-                    "value": JSON.stringify(this.data.intro)
+                    "value": JSON.stringify(this.data.header)
                 }),
                 headers: {
                     'Content-Type':'application/json',

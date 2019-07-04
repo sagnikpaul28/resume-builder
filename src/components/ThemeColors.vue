@@ -1,29 +1,6 @@
 <template>
     <div class="theme-colors">
-        <div class="color flamingo" @click="onChooseColor($event)"></div>
-        <div class="color sea-buckthorn" @click="onChooseColor($event)"></div>
-        <div class="color corn" @click="onChooseColor($event)"></div>
-        <div class="color san-marino" @click="onChooseColor($event)"></div>
-        <div class="color wedgewood" @click="onChooseColor($event)"></div>
-        <div class="color oxford-blue" @click="onChooseColor($event)"></div>
-        <div class="color shamrock" @click="onChooseColor($event)"></div>
-        <div class="color danube" @click="onChooseColor($event)"></div>
-        <div class="color crown-of-thorns" @click="onChooseColor($event)"></div>
-        <div class="color deep-sea-green" @click="onChooseColor($event)"></div>
-        <div class="color crimson" @click="onChooseColor($event)"></div>
-        <div class="color curious-blue" @click="onChooseColor($event)"></div>
-        <div class="color driftwood" @click="onChooseColor($event)"></div>
-        <div class="color irish-coffee" @click="onChooseColor($event)"></div>
-        <div class="color jungle-green" @click="onChooseColor($event)"></div>
-        <div class="color daisy-bush" @click="onChooseColor($event)"></div>
-        <div class="color chathams-blue" @click="onChooseColor($event)"></div>
-        <div class="color tory-blue" @click="onChooseColor($event)"></div>
-        <div class="color royal-heath" @click="onChooseColor($event)"></div>
-        <div class="color cardinal" @click="onChooseColor($event)"></div>
-        <div class="color big-stone" @click="onChooseColor($event)"></div>
-        <div class="color orange-roughy" @click="onChooseColor($event)"></div>
-        <div class="color black" @click="onChooseColor($event)"></div>
-        <div class="color white" @click="onChooseColor($event)"></div>
+        <div class="color" @click="onChooseColor($event)" v-for="color in colors" :key="color" :class="[color, {active: color === themeColor}]"></div>
     </div>
 </template>
 
@@ -32,7 +9,19 @@ export default {
     name: "ThemeColors",
     methods: {
         onChooseColor(e) {
-            console.log(e.target.className.split(' ')[1]);
+            this.$store.dispatch('colorSelect', e.target.className.split(' ')[1]);
+        }
+    },
+    data() {
+        return {
+            colors: [
+                "flamingo", "sea-buckthorn", "corn", "san-marino", "wedgewood", "oxford-blue", "shamrock", "danube", "crown-of-thorns", "deep-sea-green", "crimson", "curious-blue", "driftwood", "irish-coffee", "jungle-green", "daisy-bush", "chathams-blue", "tory-blue", "royal-heath", "cardinal", "big-stone", "orange-roughy", "black", "white"
+            ]
+        }
+    },
+    computed: {
+        themeColor() {
+            return this.$store.state.data.themeColor;
         }
     }
 }
@@ -147,6 +136,10 @@ export default {
 
         &.white {
             background: #ffffff;
+        }
+
+        &.active {
+            transform: scale(1.25);
         }
     }
 }
