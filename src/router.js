@@ -89,8 +89,8 @@ export default new Router({
       component: () => import('./views/Education.vue')
     },
     {
-      path: '/volunteer',
-      name: 'volunteer',
+      path: '/volunteer-experience',
+      name: 'volunteer-experience',
       component: () => import('./views/Volunteer.vue')
     },
     {
@@ -104,8 +104,8 @@ export default new Router({
       component: () => import('./views/Projects.vue')
     },
     {
-      path: '/work',
-      name: 'work',
+      path: '/work-experience',
+      name: 'work-experience',
       component: () => import('./views/Work.vue')
     },
     {
@@ -122,6 +122,11 @@ export default new Router({
       path: '/layout',
       name: 'layout',
       component: () => import('./views/Layout.vue')
+    },
+    {
+      path: '/resume',
+      name: 'resume',
+      component: () => import('./views/Resume.vue')
     }
   ]
 })

@@ -6,13 +6,13 @@
             <div class="col">
                 <div class="input-containers">
                     <label>Facebook: </label>
-                    <input type="text" v-model="data.social.facebook" />
+                    <input type="text" v-model="data.socials.facebook" />
                 </div>
             </div>
             <div class="col">
                 <div class="input-containers">
                     <label>Twitter: </label>
-                    <input type="text" v-model="data.social.twitter" />
+                    <input type="text" v-model="data.socials.twitter" />
                 </div>
             </div>
         </div>
@@ -20,13 +20,13 @@
             <div class="col">
                 <div class="input-containers">
                     <label>LinkedIn: </label>
-                    <input type="text" v-model="data.social.linkedin" />
+                    <input type="text" v-model="data.socials.linkedin" />
                 </div>
             </div>
             <div class="col">
                 <div class="input-containers">
                     <label>Github: </label>
-                    <input type="text" v-model="data.social.github" />
+                    <input type="text" v-model="data.socials.github" />
                 </div>
             </div>
         </div>
@@ -34,13 +34,13 @@
             <div class="col">
                 <div class="input-containers">
                     <label>Stack Overflow: </label>
-                    <input type="text" v-model="data.social.stackoverflow" />
+                    <input type="text" v-model="data.socials.stackoverflow" />
                 </div>
             </div>
             <div class="col">
                 <div class="input-containers">
                     <label>Instagram: </label>
-                    <input type="text" v-model="data.social.instagram" />
+                    <input type="text" v-model="data.socials.instagram" />
                 </div>
             </div>
         </div>
@@ -48,28 +48,53 @@
             <div class="col">
                 <div class="input-containers">
                     <label>Medium: </label>
-                    <input type="text" v-model="data.social.medium" />
+                    <input type="text" v-model="data.socials.medium" />
                 </div>
             </div>
             <div class="col">
                 <div class="input-containers">
                     <label>Quora: </label>
-                    <input type="text" v-model="data.social.quora" />
+                    <input type="text" v-model="data.socials.quora" />
                 </div>
             </div>
         </div>
         <div class="row footer">
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Back</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Basics",
+    name: "SocialMedia",
     computed: {
         data() {
             return this.$store.state.data
+        }
+    },
+    methods: {
+        onButtonBack() {
+            this.$router.go(-1);
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "socials",
+                    "value": JSON.stringify(this.data.socials)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(() => {
+                this.$store.dispatch('afterLayoutChooseNextState', 'social-media').then(() => {
+                    let value = this.$store.state.nextState;
+                    this.$store.dispatch('resetNextState');
+                    this.$router.push({name: value});
+                });
+            })
         }
     }
 }

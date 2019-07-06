@@ -80,7 +80,6 @@ router.post('/login', function(req, res, next) {
 });
 
 router.post('/save-details', function(req, res, next) {
-    console.log(req.body.value);
     UserDetails.findOneAndUpdate({
         email: req.body.email
     }, { 

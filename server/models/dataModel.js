@@ -15,7 +15,7 @@ const dataProjects = require('./dataProjectsModel');
 const dataPublications = require('./dataPublicationsModel');
 const dataReferences = require('./dataReferencesModel');
 const dataSkills = require('./dataSkillsModel');
-const dataSocials = require('./dataSocialModel');
+const dataSocial = require('./dataSocialModel');
 const dataSoftSkills = require('./dataSoftSkillsModel');
 const dataTechnicalSkills = require('./dataTechnicalSkillsModel');
 const dataVolunteer = require('./dataVolunteerModel');
@@ -36,7 +36,7 @@ const dataSchema = {
     publications: [dataPublications.dataPublications],
     references: [dataReferences.dataReferences],
     skills: [dataSkills.dataSkills],
-    socials: dataSocials.dataSocial,
+    socials: dataSocial.dataSocial,
     softSkills: [dataSoftSkills.dataSoftSkills],
     technicalSkills: [dataTechnicalSkills.dataTechnicalSkills],
     volunteer: [dataVolunteer.dataVolunteer],

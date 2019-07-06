@@ -251,12 +251,10 @@ export default new Vuex.Store({
                 if (item.showModal) {
                     delete item.showModal;
                 }
-                console.log(item);
                 return item;
             });
         },
         deleteItem(state, payload) {
-            console.log(payload);
             state.data[payload.type].splice(payload.index, 1);
         },
         addDetails(state, payload) {
@@ -279,25 +277,26 @@ export default new Vuex.Store({
         },
         afterLayoutChooseNextState(state, payload) {
             let newArray = [...state.data.selectedLayoutArray.combinedArray];
+            console.log(newArray);
             newArray = newArray.map(item => {
                 if (item.name !== 'Basics' && item.name !== 'Skills' && item.name !== 'Education' && item.name !== 'Intro'){ 
-                    return item.name.toLowerCase()
+                    return item.name.toLowerCase().replace(' ', '-')
                 }
             }).sort();
             
             if (payload === null) {
                 state.nextState = newArray[0];
             }
+            console.log(newArray, payload);
             for (let i = 0; i < newArray.length; i++) {
                 if (newArray[i] === payload) {
-                    if (i === newArray.length - 1) {
-                        state.nextState = 'Resume';
+                    if (i === newArray.length - 1 || newArray[i+1] === undefined) {
+                        state.nextState = 'resume';
                     }else {
-                        state.nextState = newArray[i+1].replace(' ', '');
+                        state.nextState = newArray[i+1];
                     }
                 }
             }
-            console.log(state.nextState);
         },
         resetNextState(state) {
             state.nextState = null;

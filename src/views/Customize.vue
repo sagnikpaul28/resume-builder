@@ -50,8 +50,7 @@ export default {
                 headers: {
                     'Content-Type':'application/json',
                 }
-            }).then(res => {
-                console.log(res);
+            }).then(() => {
                 fetch('http://localhost:4000/save-details', {
                     method: "POST",
                     body: JSON.stringify({
@@ -62,10 +61,9 @@ export default {
                     headers: {
                         'Content-Type':'application/json',
                     }
-                }).then(res => {
+                }).then(() => {
                     this.$store.dispatch('afterLayoutChooseNextState', null).then(() => {
                         let value = this.$store.state.nextState;
-                        console.log(value);
                         this.$store.dispatch('resetNextState');
                         this.$router.push({name: value});
                     });

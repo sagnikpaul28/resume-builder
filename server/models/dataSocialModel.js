@@ -1,13 +1,40 @@
 const dataSocialSchema = {
-    twitter: String,
-    linkedin: String,
-    facebook: String,
-    github: String,
-    stackoverflow: String,
-    instagram: String,
-    medium: String,
-    quora: String,
-    website: String
+    twitter: {
+        type: String,
+        default: ""
+    },
+    linkedin: {
+        type: String,
+        default: ""
+    },
+    facebook: {
+        type: String,
+        default: ""
+    },
+    github: {
+        type: String,
+        default: ""
+    },
+    stackoverflow: {
+        type: String,
+        default: ""
+    },
+    instagram: {
+        type: String,
+        default: ""
+    },
+    medium: {
+        type: String,
+        default: ""
+    },
+    quora: {
+        type: String,
+        default: ""
+    },
+    website: {
+        type: String,
+        default: ""
+    }
 };
 
 exports.dataSocial = dataSocialSchema;

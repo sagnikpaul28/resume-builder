@@ -64,7 +64,8 @@
 
         <div class="row footer">
             <button class="btn add-new" @click="toggleNewItemModal()"><span>+</span> Add courses</button>
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Back</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
 
         <div class="popup" :class="{'show': showNewItemAddModal}">
@@ -174,6 +175,28 @@ export default {
             this.newFields.description = '';
 
             this.toggleNewItemModal();
+        },
+        onButtonBack() {
+            this.$router.go(-1);
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "courses",
+                    "value": JSON.stringify(this.courses)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(() => {
+                this.$store.dispatch('afterLayoutChooseNextState', 'courses').then(() => {
+                    let value = this.$store.state.nextState;
+                    this.$store.dispatch('resetNextState');
+                    this.$router.push({name: value});
+                });
+            })
         }
     }
 }

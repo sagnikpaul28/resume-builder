@@ -22,7 +22,8 @@
             <button type="btn" class="btn" @click="onAddInterests()">Add</button>
         </div>
         <div class="row footer">
-            <button class="btn continue">Next</button>
+            <button class="btn continue" type="button" @click="onButtonBack()">Back</button>
+            <button class="btn continue" type="button" @click="onButtonSubmit()">Next</button>
         </div>
     </div>
 </template>
@@ -58,6 +59,28 @@ export default {
                 type: 'interests',
                 index
             });
+        },
+        onButtonBack() {
+            this.$router.go(-1);
+        },
+        onButtonSubmit() {
+            fetch('http://localhost:4000/save-details', {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": "sagnikpaul2882@gmail.com",
+                    "field": "interests",
+                    "value": JSON.stringify(this.data.interests)
+                }),
+                headers: {
+                    'Content-Type':'application/json',
+                }
+            }).then(() => {
+                this.$store.dispatch('afterLayoutChooseNextState', 'interests').then(() => {
+                    let value = this.$store.state.nextState;
+                    this.$store.dispatch('resetNextState');
+                    this.$router.push({name: value});
+                });
+            })
         }
     }
 }
