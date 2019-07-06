@@ -245,18 +245,19 @@ export default new Vuex.Store({
             state.data[payload.type].push(payload.value);
         },
         onComponentsSelect(state) {
-            state.layoutArray = ["Basics", "Skills", "Education", "Intro", ...state.selectedArray];
+            state.layoutArray = ["Skills", "Education", "Intro", ...state.selectedArray];
             state.data.selectedLayoutArray.leftArray = state.layoutArray.slice(0, state.layoutArray.length/3 + 1);
             state.data.selectedLayoutArray.rightArray = state.layoutArray.slice(state.layoutArray.length/3 + 1, state.layoutArray.length);
             state.data.selectedLayoutArray.combinedArray = [...state.layoutArray];
         },
         fontSelect(state, payload) {
             state.data.font = payload;
-            console.log(state.data.font);
         },
         colorSelect(state,payload) {
             state.data.themeColor = payload;
-            console.log(state.data.themeColor);
+        },
+        saveLoadedData(state, payload) {
+            state.data = payload;
         }
     },
     actions: {
@@ -280,6 +281,9 @@ export default new Vuex.Store({
         },
         colorSelect(context, payload) {
             context.commit('colorSelect', payload);
+        },
+        saveLoadedData(context, payload) {
+            context.commit('saveLoadedData', payload);
         }
     }
 })

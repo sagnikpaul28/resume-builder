@@ -5,22 +5,22 @@
         <div class="select-to">
             <draggable class="list-group" :list="selectedLayoutArray.leftArray" group="people" v-if="!isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.leftArray" :key="element">
-                        {{element}}
+                    <p v-for="element in selectedLayoutArray.leftArray" :key="element.name">
+                        {{element.name}}
                     </p>
                 </transition-group>
             </draggable>
             <draggable class="list-group" :list="selectedLayoutArray.rightArray" group="people" v-if="!isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.rightArray" :key="element">
-                        {{element}}
+                    <p v-for="element in selectedLayoutArray.rightArray" :key="element.name">
+                        {{element.name}}
                     </p>
                 </transition-group>
             </draggable>
             <draggable class="list-group" :list="selectedLayoutArray.combinedArray" group="people" v-if="isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.combinedArray" :key="element">
-                        {{element}}
+                    <p v-for="element in selectedLayoutArray.combinedArray" :key="element.name">
+                        {{element.name}}
                     </p>
                 </transition-group>
             </draggable>
@@ -34,7 +34,6 @@
 
 <script>
 import draggable from 'vuedraggable'
-import { constants } from 'crypto';
 
 export default {
     name: "Layout",
@@ -50,6 +49,9 @@ export default {
         },
         isSingleColumn() {
             return this.$store.state.isSingleColumn
+        },
+        combinedArray() {
+            return this.$store.state.data.selectedLayoutArray.combinedArray;
         }
     },
     methods: {
@@ -84,7 +86,8 @@ export default {
                     'Content-Type':'application/json',
                 }
             }).then(res => {
-                this.$router.push('config');
+                console.log(res);
+                this.$router.push('customize');
             })
         }
     }
@@ -92,8 +95,19 @@ export default {
 </script>
 
 <style lang="scss">
-.layout {
+.title {
+    margin: 0;
+    font-size: 1.85em;
+    text-align: left;
+}
 
+.subtitle {
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0 0 10px;
+}
+
+.layout {
     .select-to {
         background: #1886d1;
         border-radius: 4px;
@@ -133,29 +147,18 @@ export default {
         }
     }
 
-    .layout-footer {
-        width: 100%;
-        border-top: 2px solid #1886d1;
-        padding-top: 10px;
-        display: flex;
-        margin: 10px -10px 5px;
-        padding: 15px 0 0;
+    .row {
+        &.footer {
+            text-align: right;
+            display: block;
 
-        .btn {
-            flex: 1;
-            margin: 0 10px;
-            color: #1886d1;
-            border: 2px solid;
-            background: transparent;
-            font-size: 1rem;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: .4s;
-
-            &:hover {
-                background: #1886d1;
-                color: #202c35;
+            .btn {
+                font-size: 1em;
+                padding: 10px 30px;
+                background: transparent;
+                color: #1886d1;
+                border: 1px solid;
+                margin: 10px 8px;
             }
         }
     }

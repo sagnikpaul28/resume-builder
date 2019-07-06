@@ -4,6 +4,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  created() {
+    fetch("http://localhost:4000/fetch-user?email=" + "sagnikpaul2882@gmail.com").then(res => res.json()).then(res => {
+      this.$store.dispatch('saveLoadedData', res);
+    })
+  }
+}
+</script>
+
+
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -53,7 +53,7 @@ router.post('/create-new-user', function(req, res, next) {
 
 router.get('/fetch-user', function(req, res, next) {
     UserDetails.findOne({
-        email: req.body.email
+        email: req.query.email
     }).then(function(result) {
         if (result) {
             res.send(result);

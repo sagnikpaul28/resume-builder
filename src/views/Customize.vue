@@ -51,6 +51,7 @@ export default {
                     'Content-Type':'application/json',
                 }
             }).then(res => {
+                console.log(res);
                 fetch('http://localhost:4000/save-details', {
                     method: "POST",
                     body: JSON.stringify({
@@ -62,6 +63,7 @@ export default {
                         'Content-Type':'application/json',
                     }
                 }).then(res => {
+                    console.log(res);
                     this.$router.push('skills');
                 })
             })

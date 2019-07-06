@@ -35,12 +35,13 @@ export default {
                 body: JSON.stringify({
                     "email": "sagnikpaul2882@gmail.com",
                     "field": "header",
-                    "value": JSON.stringify(this.data.header)
+                    "value": JSON.stringify(this.header)
                 }),
                 headers: {
                     'Content-Type':'application/json',
                 }
             }).then(res => {
+                console.log(res);
                 this.$router.push('skills');
             })
         }
