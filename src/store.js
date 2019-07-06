@@ -212,7 +212,25 @@ export default new Vuex.Store({
                 dateTo: '',
                 course: ''
             }
-        }
+        },
+        fieldOptions: [
+            "Achievements",
+            "Awards",
+            "Certificates",
+            "Conferences",
+            "Courses",
+            "Interests",
+            "Languages",
+            "Projects",
+            "Publications",
+            "References",
+            "Social Media",
+            "Soft Skills",
+            "Technical Skills",
+            "Volunteer Experience",
+            "Work Experience"
+        ],
+        nextState: null
     },
     getters: {
         //Send individual properties of data state through getters
@@ -258,6 +276,31 @@ export default new Vuex.Store({
         },
         saveLoadedData(state, payload) {
             state.data = payload;
+        },
+        afterLayoutChooseNextState(state, payload) {
+            let newArray = [...state.data.selectedLayoutArray.combinedArray];
+            newArray = newArray.map(item => {
+                if (item.name !== 'Basics' && item.name !== 'Skills' && item.name !== 'Education' && item.name !== 'Intro'){ 
+                    return item.name.toLowerCase()
+                }
+            }).sort();
+            
+            if (payload === null) {
+                state.nextState = newArray[0];
+            }
+            for (let i = 0; i < newArray.length; i++) {
+                if (newArray[i] === payload) {
+                    if (i === newArray.length - 1) {
+                        state.nextState = 'Resume';
+                    }else {
+                        state.nextState = newArray[i+1].replace(' ', '');
+                    }
+                }
+            }
+            console.log(state.nextState);
+        },
+        resetNextState(state) {
+            state.nextState = null;
         }
     },
     actions: {
@@ -284,6 +327,12 @@ export default new Vuex.Store({
         },
         saveLoadedData(context, payload) {
             context.commit('saveLoadedData', payload);
+        },
+        afterLayoutChooseNextState(context, payload) {
+            context.commit('afterLayoutChooseNextState', payload);
+        },
+        resetNextState(context) {
+            context.commit('resetNextState');
         }
     }
 })

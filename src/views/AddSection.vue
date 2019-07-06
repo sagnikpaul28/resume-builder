@@ -20,28 +20,10 @@
 <script>
 export default {
     name: "AddSection",
-    data() {
-        return {
-            array: [
-                "Achievements",
-                "Awards",
-                "Certificates",
-                "Conferences",
-                "Courses",
-                "Interests",
-                "Languages",
-                "Projects",
-                "Publications",
-                "References",
-                "Social Media",
-                "Soft Skills",
-                "Technical Skills",
-                "Volunteer Experience",
-                "Work Experience"
-            ]
-        }
-    },
     computed: {
+        array() {
+            return this.$store.state.fieldOptions
+        },
         selectedArray: {
             get() {
                 return this.$store.state.selectedArray

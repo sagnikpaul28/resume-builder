@@ -63,8 +63,12 @@ export default {
                         'Content-Type':'application/json',
                     }
                 }).then(res => {
-                    console.log(res);
-                    this.$router.push('skills');
+                    this.$store.dispatch('afterLayoutChooseNextState', null).then(() => {
+                        let value = this.$store.state.nextState;
+                        console.log(value);
+                        this.$store.dispatch('resetNextState');
+                        this.$router.push({name: value});
+                    });
                 })
             })
         }

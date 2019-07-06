@@ -5,22 +5,22 @@
         <div class="select-to">
             <draggable class="list-group" :list="selectedLayoutArray.leftArray" group="people" v-if="!isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.leftArray" :key="element.name">
-                        {{element.name}}
+                    <p v-for="element in selectedLayoutArray.leftArray" :key="typeof element === object ? element._id : element">
+                        {{typeof element === 'object' ? element.name : element}}
                     </p>
                 </transition-group>
             </draggable>
             <draggable class="list-group" :list="selectedLayoutArray.rightArray" group="people" v-if="!isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.rightArray" :key="element.name">
-                        {{element.name}}
+                    <p v-for="element in selectedLayoutArray.rightArray" :key="typeof element === object ? element._id : element">
+                        {{typeof element === 'object' ? element.name : element}}
                     </p>
                 </transition-group>
             </draggable>
             <draggable class="list-group" :list="selectedLayoutArray.combinedArray" group="people" v-if="isSingleColumn">
                 <transition-group>
-                    <p v-for="element in selectedLayoutArray.combinedArray" :key="element.name">
-                        {{element.name}}
+                    <p v-for="element in selectedLayoutArray.combinedArray" :key="typeof element === object ? element._id : element">
+                        {{typeof element === 'object' ? element.name : element}}
                     </p>
                 </transition-group>
             </draggable>
