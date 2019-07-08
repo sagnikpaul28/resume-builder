@@ -28,6 +28,10 @@ const configSchema = {
         combinedArray: {
             type: [LayoutItems]
         }
+    },
+    theme: {
+        type: String,
+        default: ""
     }
 };
 

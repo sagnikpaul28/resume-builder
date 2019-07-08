@@ -9,51 +9,6 @@ export default new Vuex.Store({
         selectedArray: [],
         layoutArray: [],
         data: {
-            basics: {
-                name: "Sagnik Paul",
-                email: "",
-                number: "",
-                country: "",
-                city: "",
-                address: "",
-            },
-            social: {
-                website: "",
-                twitter: "",
-                linkedin: "",
-                facebook: "",
-                github: "",
-                stackoverflow: "",
-                instagram: "",
-                medium: "",
-                quora: ""
-            },
-            header: {
-                objective: ""
-            },
-            skills: [],
-            achievements: [],
-            conferences: [],
-            courses: [],
-            softSkills: [],
-            publications: [],
-            technicalSkills: [],
-            education: [],
-            volunteer: [],
-            references: [],
-            languages: [],
-            interests: [],
-            certificates: [],
-            awards: [],
-            work: [],
-            projects: [],
-            selectedLayoutArray: {
-                leftArray: [],
-                rightArray: [],
-                combinedArray: []
-            },
-            font: "",
-            themeColor: ""
         },
         newFields: {
             skills: '',

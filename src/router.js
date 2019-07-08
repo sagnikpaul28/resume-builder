@@ -124,6 +124,11 @@ export default new Router({
       component: () => import('./views/Layout.vue')
     },
     {
+      path: '/themes',
+      name: 'themes',
+      component: () => import('./views/Themes.vue')
+    },
+    {
       path: '/resume',
       name: 'resume',
       component: () => import('./views/Resume.vue')

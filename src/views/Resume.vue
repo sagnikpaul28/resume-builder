@@ -5,7 +5,10 @@
 
 <script>
 export default {
-    name: "Resume"
+    name: "Resume",
+    computed: {
+        
+    }
 }
 </script>
 
